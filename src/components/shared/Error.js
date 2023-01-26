@@ -1,4 +1,4 @@
-import MainNavigation from "./Navbar";
+import MainNavigation from "../Navbar";
 
 function ErrorPage() {
   return (
