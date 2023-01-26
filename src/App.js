@@ -1,11 +1,11 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import HomePage from "./components/Home";
-import Recipes from "./components/Recipes";
-import MealPlan from "./components/Mealplan";
+import HomePage from "./components/home/Home";
+import Recipes from "./components/recipes/Recipes";
+import MealPlan from "./components/mealplan/Mealplan";
 import RootLayout from "./components/Root";
-import ErrorPage from "./components/Error";
+import ErrorPage from "./components/shared/Error";
 
 const router = createBrowserRouter([
   {
