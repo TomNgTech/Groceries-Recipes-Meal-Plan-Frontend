@@ -1,29 +1,19 @@
 import { NavLink } from "react-router-dom";
-
+import { Link } from "@mui/material";
 
 function MainNavigation() {
   return (
     <header>
       <nav>
-        <ul style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexDirection: "row",
-          width: "66%",
-          border: "1px solid black",
-          padding: "10px",
-          margin: "auto",
-          //remove list style
-          listStyle: "none",
-        }}>
+        <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <Link underline="none" component={NavLink} to="/">Home</Link>
           </li>
           <li>
-            <NavLink to="/recipes">Recipes</NavLink>
+            <Link underline="none" component={NavLink} to="/recipes">Recipes</Link>
           </li>
           <li>
-            <NavLink to="mealplan">Meal Plan</NavLink>
+            <Link underline="none" component={NavLink}to="mealplan">Meal Plan</Link>
           </li>
         </ul>
       </nav>
