@@ -1,7 +1,7 @@
 import React from "react";
-
+import Typography from "@mui/material/Typography";
 function Recipes() {
-  return <h1>My Recipes page</h1>;
+  return <Typography variant="h3">My Recipes page</Typography>;
 }
 
 export default Recipes;
