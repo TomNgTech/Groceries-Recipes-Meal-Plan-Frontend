@@ -15,29 +15,33 @@ function createData(recipe, ingredients) {
   return { recipe, ingredients };
 }
 
-const rows = [
-  createData('Frozen yoghurt', ["yogurt", "milk", "sugar"].join(", ")),
-  createData('Ice cream sandwich', ["ice cream", "bread"].join(", ")),
-  createData('Eclair', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-  createData('Cupcake', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-  createData('Gingerbread', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-];
+// const rows = [
+//   createData('Frozen yoghurt', ["yogurt", "milk", "sugar"].join(", ")),
+//   createData('Ice cream sandwich', ["ice cream", "bread"].join(", ")),
+//   createData('Eclair', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
+//   createData('Cupcake', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
+//   createData('Gingerbread', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
+// ];
 
 function Recipes() {
-  // const [recipes, setRecipes] = React.useState([]);
-  // const fetchRecipes = async () => {fetch("http://localhost:3001/recipes", {mode:'cors'}).
-  // then((response) => { console.log(response.json());
-  //   return response.json()}).
-  // then((data) => setRecipes(data)).
-  // catch((error) => console.log(error));}
+  const [recipes, setRecipes] = React.useState([]);
+  const fetchRecipes = async () => {fetch("http://localhost:3001/recipes").then((response) => response.json()).then((data) => setRecipes(data)).catch((error) => console.log(error));}
+  useEffect(() => {fetchRecipes();}, []);
+  
+  let rows = [];
+  for(let i = 0; i < recipes.length; i++)
+  {
+    let ingredientNames = [];
+    for(let j = 0; j < recipes[i].ingredients.length; j++)
+    {
+      console.log(j);
+      ingredientNames.push(recipes[i].ingredients[j].name);
+    }
+    console.log(ingredientNames.join(", "));
 
-  // useEffect(() => {fetchRecipes();});
-  // var rows = [];
-  // for(let i = 0; i < recipes.length; i++)
-  // {
+     rows.push(createData(recipes[i].dishName, ingredientNames.join(", ")));
+  }
 
-  //   rows.push(createData(recipes[i].dishName, recipes[i].ingredients.join(", ")));
-  // }
   return (<><Typography variant="h3" className="center">My Recipes page</Typography>
   <TableContainer component={Paper} sx={{width: 600, margin: 'auto'}}>
     <Table sx={{ minWidth: 500 }} aria-label="simple table">
