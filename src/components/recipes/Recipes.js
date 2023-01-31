@@ -9,16 +9,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
-import RecipeDetails from "./RecipeDetails";
-import Modal from "@mui/material/Modal";
-
-// const rows = [
-//   createData('Frozen yoghurt', ["yogurt", "milk", "sugar"].join(", ")),
-//   createData('Ice cream sandwich', ["ice cream", "bread"].join(", ")),
-//   createData('Eclair', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-//   createData('Cupcake', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-//   createData('Gingerbread', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-// ];
 
 function Recipes() {
   const [recipes, setRecipes] = React.useState([]);
@@ -31,15 +21,31 @@ function Recipes() {
   
   const joinIngredients = (ingredients) => {
     let ingredientNames = [];
-    for(let i = 0; i < ingredients.length; i++)
-  {
-    
-    ingredientNames.push(ingredients[i].name);   
+    for(let j = 0; j < ingredients.length; j++)
+    {
+      console.log(j);
+      ingredientNames.push(ingredients[j].name);
+    }
+    console.log(ingredientNames.join(", "));
+    return ingredientNames.join(", ");
   }
-  console.log(ingredientNames.join(", "));
-  return ingredientNames.join(", ");
-}
-
+  useEffect( () => {
+    async function fetchRecipes() {
+      try{
+      let res = await fetch("http://localhost:3001/recipes");
+      let data = await res.json();
+      console.log(data);
+      setRecipes(data);
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
+    }
+    fetchRecipes();
+  }, []);
+  
+  
   return (<><Typography variant="h3" className="center">My Recipes page</Typography>
   <TableContainer component={Paper} sx={{width: 600, margin: 'auto'}}>
     <Table sx={{ minWidth: 500 }} aria-label="simple table">
