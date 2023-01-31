@@ -22,12 +22,18 @@ function Recipes() {
     console.log(ingredientNames.join(", "));
     return ingredientNames.join(", ");
   }
-  useEffect( () => { 
+  useEffect( () => {
     async function fetchRecipes() {
+      try{
       let res = await fetch("http://localhost:3001/recipes");
       let data = await res.json();
       console.log(data);
       setRecipes(data);
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
     }
     fetchRecipes();
   }, []);
