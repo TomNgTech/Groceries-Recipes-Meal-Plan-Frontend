@@ -10,38 +10,29 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 
-
-function createData(recipe, ingredients) {
-  return { recipe, ingredients };
-}
-
-// const rows = [
-//   createData('Frozen yoghurt', ["yogurt", "milk", "sugar"].join(", ")),
-//   createData('Ice cream sandwich', ["ice cream", "bread"].join(", ")),
-//   createData('Eclair', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-//   createData('Cupcake', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-//   createData('Gingerbread', ["flour", "sugar", "butter", "eggs", "milk"].join(", ")),
-// ];
-
 function Recipes() {
   const [recipes, setRecipes] = React.useState([]);
-  const fetchRecipes = async () => {fetch("http://localhost:3001/recipes").then((response) => response.json()).then((data) => setRecipes(data)).catch((error) => console.log(error));}
-  useEffect(() => {fetchRecipes();}, []);
-  
-  let rows = [];
-  for(let i = 0; i < recipes.length; i++)
-  {
+  let joinIngredients = (ingredients) => {
     let ingredientNames = [];
-    for(let j = 0; j < recipes[i].ingredients.length; j++)
+    for(let j = 0; j < ingredients.length; j++)
     {
       console.log(j);
-      ingredientNames.push(recipes[i].ingredients[j].name);
+      ingredientNames.push(ingredients[j].name);
     }
     console.log(ingredientNames.join(", "));
-
-     rows.push(createData(recipes[i].dishName, ingredientNames.join(", ")));
+    return ingredientNames.join(", ");
   }
-
+  useEffect( () => { 
+    async function fetchRecipes() {
+      let res = await fetch("http://localhost:3001/recipes");
+      let data = await res.json();
+      console.log(data);
+      setRecipes(data);
+    }
+    fetchRecipes();
+  }, []);
+  
+  
   return (<><Typography variant="h3" className="center">My Recipes page</Typography>
   <TableContainer component={Paper} sx={{width: 600, margin: 'auto'}}>
     <Table sx={{ minWidth: 500 }} aria-label="simple table">
@@ -52,14 +43,14 @@ function Recipes() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
+        {recipes.map((recipe) => (
           <TableRow
-            onClick={() => console.log(row)}
-            key={row.name}
+            onClick={() => console.log(recipe)}
+            key={recipe.dishName}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
-            <TableCell align="right">{row.recipe}</TableCell>
-            <TableCell align="right">{row.ingredients}</TableCell>
+            <TableCell align="right">{recipe.dishName}</TableCell>
+            <TableCell align="right">{joinIngredients(recipe.ingredients)}</TableCell>
           </TableRow>
         ))}
       </TableBody>
