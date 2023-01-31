@@ -34,6 +34,26 @@ function Recipes() {
 
   //   rows.push(createData(recipes[i].dishName, recipes[i].ingredients.join(", ")));
   // }
+
+  const [recipes, setRecipes] = React.useState([]);
+  const fetchRecipes = async () => {fetch("http://localhost:3001/recipes").then((response) => response.json()).then((data) => setRecipes(data)).catch((error) => console.log(error));}
+  useEffect(() => {fetchRecipes();}, []);
+  
+  let rows = [];
+  for(let i = 0; i < recipes.length; i++)
+  {
+    let ingredientNames = [];
+    for(let j = 0; j < recipes[i].ingredients.length; j++)
+    {
+      console.log(j);
+      ingredientNames.push(recipes[i].ingredients[j].name);
+    }
+    console.log(ingredientNames.join(", "));
+
+     rows.push(createData(recipes[i].dishName, ingredientNames.join(", ")));
+  }
+
+
   var cards = [];
   for(let i = 0; i<rows.length; i++)
   {
@@ -41,7 +61,7 @@ function Recipes() {
   }
   return (<>
   <Typography variant="h3" className="center">My Recipes page</Typography>
-  <div className="center"><Grid container spacing={5} sx={{maxWidth:1000, marginTop:"1em", height:400, overflow:"auto"}} >
+  <div className="center"><Grid container spacing={3} sx={{maxWidth:1000, marginTop:"1em", height:400, overflow:"auto"}} >
     {cards}
   </Grid></div>
   <div className="center"><Button sx={{marginTop:"1em", marginBottom:"2em"}}> Add Recipe</Button></div>
