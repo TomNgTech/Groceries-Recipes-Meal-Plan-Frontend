@@ -9,11 +9,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
-
-
-function createData(recipe, ingredients) {
-  return { recipe, ingredients };
-}
+import RecipeDetails from "./RecipeDetails";
+import Modal from "@mui/material/Modal";
 
 // const rows = [
 //   createData('Frozen yoghurt', ["yogurt", "milk", "sugar"].join(", ")),
@@ -25,22 +22,23 @@ function createData(recipe, ingredients) {
 
 function Recipes() {
   const [recipes, setRecipes] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [selectedRecipe, setSelectedRecipe] = React.useState({});
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const fetchRecipes = async () => {fetch("http://localhost:3001/recipes").then((response) => response.json()).then((data) => setRecipes(data)).catch((error) => console.log(error));}
   useEffect(() => {fetchRecipes();}, []);
   
-  let rows = [];
-  for(let i = 0; i < recipes.length; i++)
-  {
+  const joinIngredients = (ingredients) => {
     let ingredientNames = [];
-    for(let j = 0; j < recipes[i].ingredients.length; j++)
-    {
-      console.log(j);
-      ingredientNames.push(recipes[i].ingredients[j].name);
-    }
-    console.log(ingredientNames.join(", "));
-
-     rows.push(createData(recipes[i].dishName, ingredientNames.join(", ")));
+    for(let i = 0; i < ingredients.length; i++)
+  {
+    
+    ingredientNames.push(ingredients[i].name);   
   }
+  console.log(ingredientNames.join(", "));
+  return ingredientNames.join(", ");
+}
 
   return (<><Typography variant="h3" className="center">My Recipes page</Typography>
   <TableContainer component={Paper} sx={{width: 600, margin: 'auto'}}>
@@ -52,18 +50,27 @@ function Recipes() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {rows.map((row) => (
+        {recipes.map((recipe) => (
           <TableRow
-            onClick={() => console.log(row)}
-            key={row.name}
+            onClick={() => {
+              handleOpen();
+              setSelectedRecipe(recipe);
+            }} 
+            key={recipe.dishName}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
-            <TableCell align="right">{row.recipe}</TableCell>
-            <TableCell align="right">{row.ingredients}</TableCell>
+            <TableCell align="right">{recipe.dishName}</TableCell>
+            <TableCell align="right">{joinIngredients(recipe.ingredients)}</TableCell>
           </TableRow>
         ))}
+
       </TableBody>
     </Table>
+    <Modal
+      open={open}
+      onClose={handleClose}>
+      <RecipeDetails dishName={selectedRecipe.dishName} ingredients={selectedRecipe.ingredients} handleClose={handleClose}/>
+    </Modal>
   </TableContainer>
   <div className="center"><Button> Add Recipe</Button></div></>);
 }
