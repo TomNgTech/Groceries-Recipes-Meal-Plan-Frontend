@@ -1,14 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import BasicCard from "./RecipeCard";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 
 
 function createData(recipe, ingredients) {
@@ -38,30 +34,18 @@ function Recipes() {
 
   //   rows.push(createData(recipes[i].dishName, recipes[i].ingredients.join(", ")));
   // }
-  return (<><Typography variant="h3" className="center">My Recipes page</Typography>
-  <TableContainer component={Paper} sx={{width: 600, margin: 'auto'}}>
-    <Table sx={{ minWidth: 500 }} aria-label="simple table">
-      <TableHead>
-        <TableRow>
-          <TableCell align="right">Recipes</TableCell>
-          <TableCell align="right">Ingredients</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map((row) => (
-          <TableRow
-            onClick={() => console.log(row)}
-            key={row.name}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-          >
-            <TableCell align="right">{row.recipe}</TableCell>
-            <TableCell align="right">{row.ingredients}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-  <div className="center"><Button> Add Recipe</Button></div></>);
+  var cards = [];
+  for(let i = 0; i<rows.length; i++)
+  {
+    cards.push(<Grid item><BasicCard recipe={rows[i].recipe} ingredients={rows[i].ingredients}/></Grid>)
+  }
+  return (<>
+  <Typography variant="h3" className="center">My Recipes page</Typography>
+  <div className="center"><Grid container spacing={5} sx={{maxWidth:1000, marginTop:"1em", height:400, overflow:"auto"}} >
+    {cards}
+  </Grid></div>
+  <div className="center"><Button sx={{marginTop:"1em", marginBottom:"2em"}}> Add Recipe</Button></div>
+  </>);
 }
 
 export default Recipes;

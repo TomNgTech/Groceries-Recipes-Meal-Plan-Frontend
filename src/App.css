@@ -13,7 +13,7 @@
     background-color: lightblue;
     color: white;
 }
-body p{
+#homeBody{
     width: 66%;
     margin: auto;
     padding: 10px;
