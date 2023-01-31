@@ -18,9 +18,6 @@ function Recipes() {
   const [selectedRecipe, setSelectedRecipe] = React.useState({});
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const fetchRecipes = async () => {fetch("http://localhost:3001/recipes").then((response) => response.json()).then((data) => setRecipes(data)).catch((error) => console.log(error));}
-  useEffect(() => {fetchRecipes();}, []);
-  
   const joinIngredients = (ingredients) => {
     let ingredientNames = [];
     for(let j = 0; j < ingredients.length; j++)
