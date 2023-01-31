@@ -39,13 +39,13 @@ function Recipes() {
   }, []);
   
   
-  return (<><Typography variant="h3" className="center">My Recipes page</Typography>
-  <TableContainer component={Paper} sx={{width: 600, margin: 'auto'}}>
+  return (<><Typography variant="h3" data-testid="RecipeIntro" className="center">My Recipes page</Typography>
+  <TableContainer data-testid="recipeTableContainer" component={Paper} sx={{width: 600, margin: 'auto'}}>
     <Table sx={{ minWidth: 500 }} aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell align="right">Recipes</TableCell>
-          <TableCell align="right">Ingredients</TableCell>
+          <TableCell data-testid="RecipeHeaders" align="right">Recipes</TableCell>
+          <TableCell data-testid="IngredientHeader" align="right">Ingredients</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
