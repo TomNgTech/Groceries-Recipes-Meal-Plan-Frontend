@@ -9,10 +9,16 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import RecipeDetails from "./RecipeDetails";
 
 function Recipes() {
   const [recipes, setRecipes] = React.useState([]);
-  let joinIngredients = (ingredients) => {
+  const [open, setOpen] = React.useState(false);
+  const [selectedRecipe, setSelectedRecipe] = React.useState({});
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const joinIngredients = (ingredients) => {
     let ingredientNames = [];
     for(let j = 0; j < ingredients.length; j++)
     {
@@ -51,7 +57,10 @@ function Recipes() {
       <TableBody>
         {recipes.map((recipe) => (
           <TableRow
-            onClick={() => console.log(recipe)}
+            onClick={() => {
+              handleOpen();
+              setSelectedRecipe(recipe);
+            }} 
             key={recipe.dishName}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
           >
@@ -59,8 +68,14 @@ function Recipes() {
             <TableCell align="right">{joinIngredients(recipe.ingredients)}</TableCell>
           </TableRow>
         ))}
+
       </TableBody>
     </Table>
+    <Modal
+      open={open}
+      onClose={handleClose}>
+      <RecipeDetails dishName={selectedRecipe.dishName} ingredients={selectedRecipe.ingredients} handleClose={handleClose}/>
+    </Modal>
   </TableContainer>
   <div className="center"><Button> Add Recipe</Button></div></>);
 }
