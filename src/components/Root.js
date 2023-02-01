@@ -5,7 +5,7 @@ import MainNavigation from "./Navbar";
 function RootLayout() {
   return (
     <>
-      <Title title="Meal Plan Assistant"/>
+      <Title title="Meal Plan Assistant" />
       <MainNavigation />
       <Outlet />
     </>

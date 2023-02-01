@@ -19,16 +19,16 @@ export default function RecipeDetails(props) {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-      };
+    };
 
     return (
         <Box sx={style}>
             <Typography variant="h3" className="center">{props.dishName}</Typography>
             <Typography variant="h4" className="center">Ingredients</Typography>
             <Container>
-                <DisplayRecipeIngredients ingredients={props.ingredients}/>
+                <DisplayRecipeIngredients ingredients={props.ingredients} />
             </Container>
             <div className='center'><Button onClick={props.handleClose}>Close Modal</Button></div>
-            </Box>
+        </Box>
     );
 }
