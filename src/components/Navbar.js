@@ -1,5 +1,4 @@
-import { NavLink } from "react-router-dom";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function MainNavigation() {
   return (
@@ -7,13 +6,13 @@ function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link underline="none" component={NavLink} to="/">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link underline="none" component={NavLink} to="/recipes">Recipes</Link>
+            <Link to="/recipes">Recipes</Link>
           </li>
           <li>
-            <Link underline="none" component={NavLink}to="mealplan">Meal Plan</Link>
+            <Link to="mealplan">Meal Plan</Link>
           </li>
         </ul>
       </nav>

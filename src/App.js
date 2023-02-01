@@ -6,6 +6,7 @@ import Recipes from "./components/recipes/Recipes";
 import MealPlan from "./components/mealplan/Mealplan";
 import RootLayout from "./components/Root";
 import ErrorPage from "./components/shared/Error";
+import AddRecipe from "./components/recipes/AddRecipe";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/recipes", element: <Recipes /> },
       { path: "/mealplan", element: <MealPlan /> },
+      { path: "/addRecipe", element: <AddRecipe /> },
     ],
   },
 ]);
