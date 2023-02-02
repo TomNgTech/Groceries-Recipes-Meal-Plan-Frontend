@@ -5,6 +5,7 @@
   flex-grow: 2;
   overflow-y: auto;
   min-height: 300px;
+  max-width: 500px;
 }
 
 .recipe_ingredients_table {
@@ -18,6 +19,7 @@
   min-width: 50px;
   margin-bottom: 30px;
   min-height: 200px;
+  max-width: 300px;
 }
 
 .ingredient_options_container {
@@ -65,7 +67,7 @@
 
 .flex-container {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .table_container {

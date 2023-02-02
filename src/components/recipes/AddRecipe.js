@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
@@ -9,31 +10,89 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import "./AddRecipe.css";
 
-function AddRecipe() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+function AddRecipe({ setRecipes, recipes, handleClose }) {
+  const [ingredientsList, setIngredientsList] = useState([]);
+  const [recipeIngredients, setRecipeIngredient] = useState([]);
+  const [newIngredient, setNewIngredient] = useState("");
+  const [recipeName, setRecipeName] = useState("");
 
-  const columns = [{ id: "name", label: "Name", minWidth: 170 }];
+  useEffect(() => {
+    async function fetchIngredients() {
+      try {
+        let res = await fetch("http://localhost:3001/ingredients");
+        let data = await res.json();
+        console.log(data);
+        setIngredientsList(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    if (ingredientsList.length === 0) {
+      fetchIngredients();
+    }
+  }, [ingredientsList, recipeIngredients]);
 
-  function createData(name, code, population, size) {
-    const density = population / size;
-    return { name, code, population, size, density };
-  }
-
-  const rows = [
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
-    createData("India", "IN", 1324171354, 3287263),
+  const recipeIngredientsColumns = [
+    { id: "name", label: "Recipe Ingredient", minWidth: 80 },
+    { id: "quantity", label: "Quantity", minWidth: 30 },
   ];
+
+  const ingredientOptionsColumns = [
+    { id: "name", label: "Ingredient", minWidth: 80 },
+    { id: "add", label: "Add to Recipe", minWidth: 30 },
+  ];
+
+  const addIngredientToRecipe = (ingredient, event) => {
+    if (event.target.checked === true) {
+      setRecipeIngredient((recipeIngredients) => [
+        ...recipeIngredients,
+        ingredient,
+      ]);
+    } else {
+      setRecipeIngredient(
+        recipeIngredients.filter((item) => item.name !== ingredient.name)
+      );
+    }
+  };
+
+  const addNewIngredientOption = () => {
+    console.log(newIngredient.length);
+    if (newIngredient !== "" && newIngredient.length !== 50) {
+      setIngredientsList((ingredientsList) => [
+        ...ingredientsList,
+        {
+          id: ingredientsList.length + 1,
+          name: newIngredient,
+          measurementType: "ounces",
+        },
+      ]);
+    } else {
+      console.log("There is no ingredient, or the ingredient name is to big");
+    }
+  };
+
+  const submitRecipe = () => {
+    if (recipeIngredients.length !== 0 && recipeName !== "") {
+      setRecipes((recipes) => [
+        ...recipes,
+        {
+          dishName: recipeName,
+          id: recipes.length + 1,
+          ingredients: recipeIngredients,
+          servingSize: 1,
+        },
+      ]);
+      handleClose();
+    } else {
+      console.log(
+        "Recipe name is missing or there are no ingredients on the recipe"
+      );
+    }
+  };
 
   return (
     <Box className="container">
@@ -43,6 +102,7 @@ function AddRecipe() {
           id="demo-helper-text-aligned"
           label="Recipe Name"
           className="recipe_name"
+          onChange={(e) => setRecipeName(e.target.value)}
         />
         <span className="general_usage_span"></span>
       </div>
@@ -53,7 +113,7 @@ function AddRecipe() {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  {columns.map((column) => (
+                  {recipeIngredientsColumns.map((column) => (
                     <TableCell
                       key={column.id}
                       align={column.align}
@@ -65,29 +125,29 @@ function AddRecipe() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
-                    return (
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={row.code}
+                {recipeIngredients.map((ingredient) => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={ingredient.id}
+                    >
+                      <TableCell
+                        key={recipeIngredientsColumns.id}
+                        align={recipeIngredientsColumns.align}
                       >
-                        {columns.map((column) => {
-                          const value = row[column.id];
-                          return (
-                            <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === "number"
-                                ? column.format(value)
-                                : value}
-                            </TableCell>
-                          );
-                        })}
-                      </TableRow>
-                    );
-                  })}
+                        {ingredient.name}
+                      </TableCell>
+                      <TableCell
+                        key={recipeIngredientsColumns.id}
+                        align={recipeIngredientsColumns.align}
+                      >
+                        1
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </TableContainer>
@@ -99,7 +159,7 @@ function AddRecipe() {
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
-                    {columns.map((column) => (
+                    {ingredientOptionsColumns.map((column) => (
                       <TableCell
                         key={column.id}
                         align={column.align}
@@ -111,29 +171,37 @@ function AddRecipe() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={row.code}
+                  {ingredientsList.map((ingredient) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={ingredient.id}
+                      >
+                        <TableCell
+                          key={ingredientOptionsColumns.id}
+                          align={ingredientOptionsColumns.align}
                         >
-                          {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                              <TableCell key={column.id} align={column.align}>
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
+                          {ingredient.name}
+                        </TableCell>
+                        <TableCell
+                          key={ingredientOptionsColumns.id}
+                          align={ingredientOptionsColumns.align}
+                        >
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                onChange={(e) =>
+                                  addIngredientToRecipe(ingredient, e)
+                                }
+                              />
+                            }
+                          />
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </TableContainer>
@@ -144,19 +212,29 @@ function AddRecipe() {
               id="demo-helper-text-aligned"
               label="New Ingredient Option"
               className="new_ingredient_textfield"
+              onChange={(e) => setNewIngredient(e.target.value)}
             />
             <span className="new_ingredient_span"></span>
           </div>
           <div className="flex-container">
             <span className="new_ingredient_span"></span>
-            <Button size="medium"> Add to options </Button>
+            <Button size="medium" onClick={addNewIngredientOption}>
+              {" "}
+              Add to options{" "}
+            </Button>
             <span className="new_ingredient_span"></span>
           </div>
         </div>
       </div>
       <div className="flex-container">
         <span className="new_ingredient_span"></span>
-        <Button variant="outlined" size="large">
+        <Button
+          variant="outlined"
+          size="large"
+          onClick={(e) => {
+            submitRecipe();
+          }}
+        >
           Submit Recipe
         </Button>
         <span className="new_ingredient_span"></span>

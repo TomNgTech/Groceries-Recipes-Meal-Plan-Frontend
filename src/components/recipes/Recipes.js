@@ -54,10 +54,8 @@ function Recipes() {
   const joinIngredients = (ingredients) => {
     let ingredientNames = [];
     for (let j = 0; j < ingredients.length; j++) {
-      console.log(j);
       ingredientNames.push(ingredients[j].name);
     }
-    console.log(ingredientNames.join(", "));
     return ingredientNames.join(", ");
   };
 
@@ -66,8 +64,8 @@ function Recipes() {
       try {
         let res = await fetch("http://localhost:3001/recipes");
         let data = await res.json();
-        console.log(data);
         setRecipes(data);
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -131,7 +129,11 @@ function Recipes() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddRecipe />
+        <AddRecipe
+          handleClose={handleClose}
+          setRecipes={setRecipes}
+          recipes={recipes}
+        />
       </Modal>
     </>
   );
