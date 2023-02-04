@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function MainNavigation() {
+function MainNavigation () {
   return (
     <header>
       <nav>
@@ -17,7 +18,7 @@ function MainNavigation() {
         </ul>
       </nav>
     </header>
-  );
+  )
 }
 
-export default MainNavigation;
+export default MainNavigation

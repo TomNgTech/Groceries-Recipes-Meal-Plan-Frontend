@@ -1,98 +1,97 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import "./AddRecipe.css";
+import React, { useEffect, useState } from 'react'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+import { Button } from '@mui/material'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import './AddRecipe.css'
 
-function AddRecipe({ setRecipes, recipes, handleClose }) {
-  const [ingredientsList, setIngredientsList] = useState([]);
-  const [recipeIngredients, setRecipeIngredient] = useState([]);
-  const [newIngredient, setNewIngredient] = useState("");
-  const [recipeName, setRecipeName] = useState("");
+function AddRecipe ({ setRecipes, recipes, handleClose }) {
+  const [ingredientsList, setIngredientsList] = useState([])
+  const [recipeIngredients, setRecipeIngredient] = useState([])
+  const [newIngredient, setNewIngredient] = useState('')
+  const [recipeName, setRecipeName] = useState('')
 
   useEffect(() => {
-    async function fetchIngredients() {
+    async function fetchIngredients () {
       try {
-        let res = await fetch("http://localhost:3001/ingredients");
-        let data = await res.json();
-        console.log(data);
-        setIngredientsList(data);
+        const res = await fetch('http://localhost:3001/ingredients')
+        const data = await res.json()
+        console.log(data)
+        setIngredientsList(data)
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     }
     if (ingredientsList.length === 0) {
-      fetchIngredients();
+      fetchIngredients()
     }
-  }, [ingredientsList, recipeIngredients]);
+  }, [ingredientsList, recipeIngredients])
 
   const recipeIngredientsColumns = [
-    { id: "name", label: "Recipe Ingredient", minWidth: 80 },
-    { id: "quantity", label: "Quantity", minWidth: 30 },
-  ];
+    { id: 'name', label: 'Recipe Ingredient', minWidth: 80 },
+    { id: 'quantity', label: 'Quantity', minWidth: 30 }
+  ]
 
   const ingredientOptionsColumns = [
-    { id: "name", label: "Ingredient", minWidth: 80 },
-    { id: "add", label: "Add to Recipe", minWidth: 30 },
-  ];
+    { id: 'name', label: 'Ingredient', minWidth: 80 },
+    { id: 'add', label: 'Add to Recipe', minWidth: 30 }
+  ]
 
   const addIngredientToRecipe = (ingredient, event) => {
     if (event.target.checked === true) {
       setRecipeIngredient((recipeIngredients) => [
         ...recipeIngredients,
-        ingredient,
-      ]);
+        ingredient
+      ])
     } else {
       setRecipeIngredient(
         recipeIngredients.filter((item) => item.name !== ingredient.name)
-      );
+      )
     }
-  };
+  }
 
   const addNewIngredientOption = () => {
-    console.log(newIngredient.length);
-    if (newIngredient !== "" && newIngredient.length !== 50) {
+    console.log(newIngredient.length)
+    if (newIngredient !== '' && newIngredient.length !== 50) {
       setIngredientsList((ingredientsList) => [
         ...ingredientsList,
         {
           id: ingredientsList.length + 1,
           name: newIngredient,
-          measurementType: "ounces",
-        },
-      ]);
+          measurementType: 'ounces'
+        }
+      ])
     } else {
-      console.log("There is no ingredient, or the ingredient name is to big");
+      console.log('There is no ingredient, or the ingredient name is to big')
     }
-  };
+  }
 
   const submitRecipe = () => {
-    if (recipeIngredients.length !== 0 && recipeName !== "") {
+    if (recipeIngredients.length !== 0 && recipeName !== '') {
       setRecipes((recipes) => [
         ...recipes,
         {
           dishName: recipeName,
           id: recipes.length + 1,
           ingredients: recipeIngredients,
-          servingSize: 1,
-        },
-      ]);
-      handleClose();
+          servingSize: 1
+        }
+      ])
+      handleClose()
     } else {
       console.log(
-        "Recipe name is missing or there are no ingredients on the recipe"
-      );
+        'Recipe name is missing or there are no ingredients on the recipe'
+      )
     }
-  };
+  }
 
   return (
     <Box className="container">
@@ -146,7 +145,7 @@ function AddRecipe({ setRecipes, recipes, handleClose }) {
                         1
                       </TableCell>
                     </TableRow>
-                  );
+                  )
                 })}
               </TableBody>
             </Table>
@@ -200,7 +199,7 @@ function AddRecipe({ setRecipes, recipes, handleClose }) {
                           />
                         </TableCell>
                       </TableRow>
-                    );
+                    )
                   })}
                 </TableBody>
               </Table>
@@ -219,8 +218,8 @@ function AddRecipe({ setRecipes, recipes, handleClose }) {
           <div className="flex-container">
             <span className="new_ingredient_span"></span>
             <Button size="medium" onClick={addNewIngredientOption}>
-              {" "}
-              Add to options{" "}
+              {' '}
+              Add to options{' '}
             </Button>
             <span className="new_ingredient_span"></span>
           </div>
@@ -232,7 +231,7 @@ function AddRecipe({ setRecipes, recipes, handleClose }) {
           variant="outlined"
           size="large"
           onClick={(e) => {
-            submitRecipe();
+            submitRecipe()
           }}
         >
           Submit Recipe
@@ -240,7 +239,7 @@ function AddRecipe({ setRecipes, recipes, handleClose }) {
         <span className="new_ingredient_span"></span>
       </div>
     </Box>
-  );
+  )
 }
 
-export default AddRecipe;
+export default AddRecipe

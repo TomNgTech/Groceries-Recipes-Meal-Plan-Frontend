@@ -19,9 +19,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
+    "build": "CI=false && DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "jest",
-    "lint": "eslint --ext .ts,.js src",
+    "lint": "eslint --fix --ext .ts,.js src",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -2,10 +2,8 @@
  * @jest-environment jsdom
  */
 import React from 'react'
-import { render, screen, toHaveTextContent } from '@testing-library/react'
-import { useEffect } from 'react'
+import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import Recipes from '../components/recipes/Recipes'
 import Typography from '@mui/material/Typography'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -17,11 +15,11 @@ import Paper from '@mui/material/Paper'
 import { Button } from '@mui/material'
 import { mockRecipes } from '../MockTestData/mockRecipeData'
 
-//tests for Recipe Page
+// tests for Recipe Page
 describe('<Recipes/>', () => {
   const recipes = mockRecipes
-  let joinIngredients = (ingredients) => {
-    let ingredientNames = []
+  const joinIngredients = (ingredients) => {
+    const ingredientNames = []
     for (let j = 0; j < ingredients.length; j++) {
       ingredientNames.push(ingredients[j].name)
     }
@@ -72,59 +70,59 @@ describe('<Recipes/>', () => {
         <div className="center">
           <Button> Add Recipe</Button>
         </div>
-      </>,
+      </>
     )
 
   test('should render without crashing', () => {
     setup()
     expect(screen).toBeDefined()
     expect(
-      screen.getByRole('heading', { name: 'My Recipes page' }),
+      screen.getByRole('heading', { name: 'My Recipes page' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('columnheader', { name: 'Recipes' }),
+      screen.getByRole('columnheader', { name: 'Recipes' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('columnheader', { name: 'Ingredients' }),
+      screen.getByRole('columnheader', { name: 'Ingredients' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('cell', { name: 'Grilled Chicken Caesar Salad' }),
+      screen.getByRole('cell', { name: 'Grilled Chicken Caesar Salad' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('cell', { name: 'ribeye steak, potatoes, butter' }),
+      screen.getByRole('cell', { name: 'ribeye steak, potatoes, butter' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('cell', { name: 'Chicken and Potatoes' }),
+      screen.getByRole('cell', { name: 'Chicken and Potatoes' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('cell', { name: 'chicken tighs, potatoes, butter' }),
+      screen.getByRole('cell', { name: 'chicken tighs, potatoes, butter' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('button', { name: 'Add Recipe' }),
+      screen.getByRole('button', { name: 'Add Recipe' })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('row', { name: 'Recipes Ingredients' }),
+      screen.getByRole('row', { name: 'Recipes Ingredients' })
     ).toBeInTheDocument()
     expect(
       screen.getByRole('row', {
         name:
-          'Grilled Chicken Caesar Salad chicken breast, lettuce, caesar dressing',
-      }),
+          'Grilled Chicken Caesar Salad chicken breast, lettuce, caesar dressing'
+      })
     ).toBeInTheDocument()
     expect(
       screen.getByRole('row', {
-        name: 'Steak and Potatoes ribeye steak, potatoes, butter',
-      }),
+        name: 'Steak and Potatoes ribeye steak, potatoes, butter'
+      })
     ).toBeInTheDocument()
     expect(
       screen.getByRole('row', {
-        name: 'Chicken and Potatoes chicken tighs, potatoes, butter',
-      }),
+        name: 'Chicken and Potatoes chicken tighs, potatoes, butter'
+      })
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('table', { name: 'simple table' }),
+      screen.getByRole('table', { name: 'simple table' })
     ).toBeInTheDocument()
-      //do not delete
-    //expect(screen.getByRole('td', {dishName: 'Grilled Chicken Caesar Salad'})).toBeInTheDocument();
+    // do not delete
+    // expect(screen.getByRole('td', {dishName: 'Grilled Chicken Caesar Salad'})).toBeInTheDocument();
   })
 })

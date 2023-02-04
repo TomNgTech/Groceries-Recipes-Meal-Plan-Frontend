@@ -1,77 +1,76 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import Typography from "@mui/material/Typography";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import RecipeDetails from "./RecipeDetails";
-import AddRecipe from "./AddRecipe";
+import React, { useEffect, useState } from 'react'
+import Typography from '@mui/material/Typography'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+import { Button } from '@mui/material'
+import Modal from '@mui/material/Modal'
+import RecipeDetails from './RecipeDetails'
+import AddRecipe from './AddRecipe'
 
-function Recipes() {
-  const [recipes, setRecipes] = useState([]);
+function Recipes () {
+  const [recipes, setRecipes] = useState([])
 
   const [openModal, setOpenModal] = useState({
     openDetailModal: false,
-    openAddRecipeModal: false,
-  });
+    openAddRecipeModal: false
+  })
 
   const handleOpen = (modalType) => {
-    if (modalType === "Detail") {
+    if (modalType === 'Detail') {
       setOpenModal({
         ...openModal,
-        openDetailModal: true,
-      });
+        openDetailModal: true
+      })
     } else {
       setOpenModal({
         ...openModal,
-        openAddRecipeModal: true,
-      });
+        openAddRecipeModal: true
+      })
     }
-  };
+  }
 
   const handleClose = () => {
     if (openModal.openAddRecipeModal === true) {
       setOpenModal({
         ...openModal,
-        openAddRecipeModal: false,
-      });
+        openAddRecipeModal: false
+      })
     } else {
       setOpenModal({
         ...openModal,
-        openDetailModal: false,
-      });
+        openDetailModal: false
+      })
     }
-  };
+  }
 
-  const [selectedRecipe, setSelectedRecipe] = useState({});
+  const [selectedRecipe, setSelectedRecipe] = useState({})
 
   const joinIngredients = (ingredients) => {
-    let ingredientNames = [];
+    const ingredientNames = []
     for (let j = 0; j < ingredients.length; j++) {
-      ingredientNames.push(ingredients[j].name);
+      ingredientNames.push(ingredients[j].name)
     }
-    return ingredientNames.join(", ");
-  };
+    return ingredientNames.join(', ')
+  }
 
   useEffect(() => {
-    async function fetchRecipes() {
+    async function fetchRecipes () {
       try {
-        let res = await fetch("http://localhost:3001/recipes");
-        let data = await res.json();
-        setRecipes(data);
-        console.log(data);
+        const res = await fetch('http://localhost:3001/recipes')
+        const data = await res.json()
+        setRecipes(data)
+        console.log(data)
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     }
-    fetchRecipes();
-  }, []);
+    fetchRecipes()
+  }, [])
 
   return (
     <>
@@ -81,7 +80,7 @@ function Recipes() {
       <TableContainer
         data-testid="recipeTableContainer"
         component={Paper}
-        sx={{ width: 600, margin: "auto" }}
+        sx={{ width: 600, margin: 'auto' }}
       >
         <Table sx={{ minWidth: 500 }} aria-label="simple table">
           <TableHead>
@@ -98,11 +97,11 @@ function Recipes() {
             {recipes.map((recipe) => (
               <TableRow
                 onClick={() => {
-                  handleOpen("Detail");
-                  setSelectedRecipe(recipe);
+                  handleOpen('Detail')
+                  setSelectedRecipe(recipe)
                 }}
                 key={recipe.dishName}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align="right">{recipe.dishName}</TableCell>
                 <TableCell align="right">
@@ -121,7 +120,7 @@ function Recipes() {
         </Modal>
       </TableContainer>
       <div className="center">
-        <Button onClick={() => handleOpen("AddRecipe")}>Add Recipe</Button>
+        <Button onClick={() => handleOpen('AddRecipe')}>Add Recipe</Button>
       </div>
       <Modal
         open={openModal.openAddRecipeModal}
@@ -136,7 +135,7 @@ function Recipes() {
         />
       </Modal>
     </>
-  );
+  )
 }
 
-export default Recipes;
+export default Recipes

@@ -1,7 +1,7 @@
-import { Typography } from "@mui/material";
-import React from "react";
+import { Typography } from '@mui/material'
+import React from 'react'
 
-function HomePage() {
+function HomePage () {
   return (
     <>
       <body>
@@ -10,7 +10,7 @@ function HomePage() {
         </Typography>
       </body>
     </>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage
