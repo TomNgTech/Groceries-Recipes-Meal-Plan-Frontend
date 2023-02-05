@@ -61,7 +61,7 @@ function Recipes () {
   useEffect(() => {
     async function fetchRecipes () {
       try {
-        const res = await fetch('http://localhost:3001/recipes')
+        const res = await fetch('http://52.37.204.183/recipes')
         const data = await res.json()
         setRecipes(data)
         console.log(data)

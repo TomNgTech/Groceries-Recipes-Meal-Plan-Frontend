@@ -10,6 +10,11 @@ module.exports = {
   ],
   overrides: [
   ],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
