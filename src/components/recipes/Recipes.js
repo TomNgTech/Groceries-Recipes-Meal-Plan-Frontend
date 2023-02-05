@@ -10,7 +10,8 @@ import Paper from '@mui/material/Paper'
 import { Button } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import RecipeDetails from './RecipeDetails'
-import AddRecipe from './AddRecipe'
+import AddRecipe from './addrecipe/AddRecipe'
+import { fetchRecipes } from '../Api'
 
 function Recipes () {
   const [recipes, setRecipes] = useState([])
@@ -59,17 +60,9 @@ function Recipes () {
   }
 
   useEffect(() => {
-    async function fetchRecipes () {
-      try {
-        const res = await fetch('http://localhost:3001/recipes')
-        const data = await res.json()
-        setRecipes(data)
-        console.log(data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    fetchRecipes()
+    fetchRecipes().then(data => {
+      setRecipes(data)
+    })
   }, [])
 
   return (

@@ -1,0 +1,15 @@
+.recipe_ingredients {
+  max-height: 450px;
+  overflow: hidden;
+  min-width: 200px;
+  flex-grow: 2;
+  overflow-y: auto;
+  min-height: 300px;
+  max-width: 500px;
+}
+
+
+.recipe_ingredients_table {
+  max-height: 450px;
+  min-height: 300px;
+}
