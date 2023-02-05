@@ -1,6 +1,6 @@
 export async function fetchIngredients () {
   try {
-    const res = await fetch('http://localhost:3001/ingredients')
+    const res = await fetch('http://52.37.204.183/ingredients')
     const data = await res.json()
     return data
   } catch (err) {
@@ -10,7 +10,7 @@ export async function fetchIngredients () {
 
 export async function fetchRecipes () {
   try {
-    const res = await fetch('http://localhost:3001/recipes')
+    const res = await fetch('http://52.37.204.183/recipes')
     const data = await res.json()
     return data
   } catch (err) {
