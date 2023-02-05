@@ -22,7 +22,7 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
   useEffect(() => {
     async function fetchIngredients () {
       try {
-        const res = await fetch('http://localhost:3001/ingredients')
+        const res = await fetch('http://52.37.204.183/ingredients')
         const data = await res.json()
         console.log(data)
         setIngredientsList(data)
