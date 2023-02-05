@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -8,37 +6,21 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Button } from '@mui/material'
-import Checkbox from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import './AddRecipe.css'
+import './IngredientOptions.css'
+import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { fetchIngredients } from '../../Api'
 
-function AddRecipe ({ setRecipes, recipes, handleClose }) {
-  const [ingredientsList, setIngredientsList] = useState([])
-  const [recipeIngredients, setRecipeIngredient] = useState([])
+function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
   const [newIngredient, setNewIngredient] = useState('')
-  const [recipeName, setRecipeName] = useState('')
+  const [ingredientsList, setIngredientList] = useState([])
 
   useEffect(() => {
-    async function fetchIngredients () {
-      try {
-        const res = await fetch('http://52.37.204.183/ingredients')
-        const data = await res.json()
-        console.log(data)
-        setIngredientsList(data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
     if (ingredientsList.length === 0) {
-      fetchIngredients()
+      fetchIngredients().then((data) => {
+        setIngredientList(data)
+      })
     }
-  }, [ingredientsList, recipeIngredients])
-
-  const recipeIngredientsColumns = [
-    { id: 'name', label: 'Recipe Ingredient', minWidth: 80 },
-    { id: 'quantity', label: 'Quantity', minWidth: 30 }
-  ]
+  }, [])
 
   const ingredientOptionsColumns = [
     { id: 'name', label: 'Ingredient', minWidth: 80 },
@@ -59,9 +41,8 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
   }
 
   const addNewIngredientOption = () => {
-    console.log(newIngredient.length)
     if (newIngredient !== '' && newIngredient.length !== 50) {
-      setIngredientsList((ingredientsList) => [
+      setIngredientList((ingredientsList) => [
         ...ingredientsList,
         {
           id: ingredientsList.length + 1,
@@ -73,86 +54,8 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
       console.log('There is no ingredient, or the ingredient name is to big')
     }
   }
-
-  const submitRecipe = () => {
-    if (recipeIngredients.length !== 0 && recipeName !== '') {
-      setRecipes((recipes) => [
-        ...recipes,
-        {
-          dishName: recipeName,
-          id: recipes.length + 1,
-          ingredients: recipeIngredients,
-          servingSize: 1
-        }
-      ])
-      handleClose()
-    } else {
-      console.log(
-        'Recipe name is missing or there are no ingredients on the recipe'
-      )
-    }
-  }
-
   return (
-    <Box className="container">
-      <div className="flex-container">
-        <span className="general_usage_span"></span>
-        <TextField
-          id="demo-helper-text-aligned"
-          label="Recipe Name"
-          className="recipe_name"
-          onChange={(e) => setRecipeName(e.target.value)}
-        />
-        <span className="general_usage_span"></span>
-      </div>
-
-      <div className="table_container ">
-        <Paper className="recipe_ingredients">
-          <TableContainer className="recipe_ingredients_table">
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  {recipeIngredientsColumns.map((column) => (
-                    <TableCell
-                      key={column.id}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {recipeIngredients.map((ingredient) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={ingredient.id}
-                    >
-                      <TableCell
-                        key={recipeIngredientsColumns.id}
-                        align={recipeIngredientsColumns.align}
-                      >
-                        {ingredient.name}
-                      </TableCell>
-                      <TableCell
-                        key={recipeIngredientsColumns.id}
-                        align={recipeIngredientsColumns.align}
-                      >
-                        1
-                      </TableCell>
-                    </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-        <span className="general_usage_span"></span>
-        <div className="ingredient_options_container">
+<div className="ingredient_options_container">
           <Paper className="ingredients_options">
             <TableContainer className="ingredients_options_table">
               <Table stickyHeader aria-label="sticky table">
@@ -224,22 +127,7 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
             <span className="new_ingredient_span"></span>
           </div>
         </div>
-      </div>
-      <div className="flex-container">
-        <span className="new_ingredient_span"></span>
-        <Button
-          variant="outlined"
-          size="large"
-          onClick={(e) => {
-            submitRecipe()
-          }}
-        >
-          Submit Recipe
-        </Button>
-        <span className="new_ingredient_span"></span>
-      </div>
-    </Box>
   )
 }
 
-export default AddRecipe
+export default IngredientOptions

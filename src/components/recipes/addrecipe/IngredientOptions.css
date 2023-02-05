@@ -1,0 +1,37 @@
+.ingredients_options {
+  max-height: 300px;
+  overflow: hidden;
+  min-width: 50px;
+  margin-bottom: 30px;
+  min-height: 200px;
+  max-width: 300px;
+}
+
+.ingredient_options_container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 200px;
+}
+
+.ingredients_options_table {
+  max-height: 300px;
+}
+
+.new_ingredient_textfield {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.new_ingredient_span {
+  flex-grow: 2;
+  flex-shrink: 0;
+  min-width: 5px;
+}
+
+
+.general_usage_span {
+  flex-grow: 1;
+  flex-shrink: 0;
+  min-width: 100px;
+}
