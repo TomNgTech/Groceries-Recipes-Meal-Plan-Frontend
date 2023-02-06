@@ -1,5 +1,5 @@
 .ingredients_options {
-  max-height: 300px;
+  max-height: 200px;
   overflow: hidden;
   min-width: 50px;
   margin-bottom: 30px;
@@ -34,4 +34,8 @@
   flex-grow: 1;
   flex-shrink: 0;
   min-width: 100px;
+}
+
+.measurementUnitForm {
+  flex-grow: 4;
 }

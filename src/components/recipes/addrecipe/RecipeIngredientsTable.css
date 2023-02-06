@@ -13,3 +13,7 @@
   max-height: 450px;
   min-height: 300px;
 }
+
+.quantityTextField {
+  max-width: 70px;
+}
