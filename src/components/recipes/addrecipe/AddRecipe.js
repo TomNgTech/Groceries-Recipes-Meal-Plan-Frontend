@@ -8,11 +8,18 @@ import IngredientOptions from './IngredientOptions.js'
 
 function AddRecipe ({ setRecipes, recipes, handleClose }) {
   const [recipeIngredients, setRecipeIngredient] = useState([])
-
   const [recipeName, setRecipeName] = useState('')
 
+  const [submitRecipeValidationData, setValidation] = useState({
+    recipeNameInputValid: true,
+    recipeIngredientsValid: true
+  })
+
   const submitRecipe = () => {
-    if (recipeIngredients.length !== 0 && recipeName !== '') {
+    const recipeNameValidation = !!(recipeName.length !== 0 && recipeName !== '')
+    const recipeIngredientsValidation = validateRecipeIngredients()
+
+    if (recipeNameValidation && recipeIngredientsValidation) {
       setRecipes((recipes) => [
         ...recipes,
         {
@@ -25,13 +32,33 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
       handleClose()
     } else {
       console.log(
-        'Recipe name is missing or there are no ingredients on the recipe'
+        'Recipe name is missing, no ingredients or missing quantity'
       )
     }
+    setValidation({
+      ...submitRecipeValidationData,
+      recipeNameInputValid: recipeNameValidation,
+      recipeIngredientsValid: recipeIngredientsValidation
+    })
+  }
+
+  const validateRecipeIngredients = () => {
+    if (recipeIngredients.length === 0) {
+      return false
+    }
+    let result = true
+    recipeIngredients.forEach(ingredient => {
+      if (ingredient.quantity <= 0 || ingredient.quantity > 10000000) {
+        result = false
+      }
+    })
+
+    return result
   }
 
   return (
     <Box className="container">
+
       <div className="flex-container">
         <span className="general_usage_span"></span>
         <TextField
@@ -42,9 +69,16 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
         />
         <span className="general_usage_span"></span>
       </div>
+      {!submitRecipeValidationData.recipeNameInputValid &&
+        <div className='flex-container'>
+          <span className="general_usage_span"></span>
+          <span className='invalidInput'>Invalid Recipe Name</span>
+          <span className="general_usage_span"></span>
+        </div>
+      }
 
       <div className="table_container ">
-        <RecipeIngredientsTable recipeIngredients={recipeIngredients} />
+        <RecipeIngredientsTable recipeIngredients={recipeIngredients} setRecipeIngredient={setRecipeIngredient} submitRecipeValidationData={submitRecipeValidationData} />
         <span className="general_usage_span"></span>
         <IngredientOptions recipeIngredients={recipeIngredients} setRecipeIngredient={setRecipeIngredient} />
       </div>
@@ -62,6 +96,13 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
         </Button>
         <span className="new_ingredient_span"></span>
       </div>
+      {!submitRecipeValidationData.recipeIngredientsValid &&
+        <div className='flex-container'>
+          <span className="general_usage_span"></span>
+          <span className='invalidQuantity'>Invalid quantity on ingredients or no ingredients on recipe</span>
+          <span className="general_usage_span"></span>
+        </div>
+      }
     </Box>
   )
 }

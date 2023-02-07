@@ -9,12 +9,22 @@ import Paper from '@mui/material/Paper'
 import './RecipeIngredientsTable.css'
 import { TextField } from '@mui/material'
 
-function RecipeIngredientsTable ({ recipeIngredients }) {
+function RecipeIngredientsTable ({ recipeIngredients, setRecipeIngredient }) {
   const recipeIngredientsColumns = [
     { id: 'name', label: 'Recipe Ingredient', minWidth: 80 },
     { id: 'quantity', label: 'Quantity', minWidth: 30 },
     { id: 'unit', label: 'Unit', minWidth: 30 }
   ]
+
+  const handleQuantityChange = (event, ingredient) => {
+    const newArray = recipeIngredients.map(newIngredient => {
+      if (newIngredient.id === ingredient.id) {
+        newIngredient.quantity = event.target.value
+      }
+      return newIngredient
+    })
+    setRecipeIngredient(newArray)
+  }
 
   return (
     <Paper className="recipe_ingredients">
@@ -56,9 +66,10 @@ function RecipeIngredientsTable ({ recipeIngredients }) {
                     <TextField
                       hiddenLabel
                       id="filled-hidden-label-small"
-                      defaultValue="0"
+                      defaultValue={ingredient.quantity}
                       variant="standard"
                       size="small"
+                      onChange={(e) => handleQuantityChange(e, ingredient)}
                     />
                   </TableCell>
                   <TableCell
@@ -71,6 +82,7 @@ function RecipeIngredientsTable ({ recipeIngredients }) {
               )
             })}
           </TableBody>
+
         </Table>
       </TableContainer>
     </Paper>

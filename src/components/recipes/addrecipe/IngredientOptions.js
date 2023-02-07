@@ -18,13 +18,18 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
   })
   const [ingredientsList, setIngredientList] = useState([])
 
+  const [addIngredientValidation, setIngredientValidation] = useState({
+    validIngredientName: true,
+    validIngredientUnit: true
+  })
+
   useEffect(() => {
     if (ingredientsList.length === 0) {
       fetchIngredients().then((data) => {
         setIngredientList(data)
       })
     }
-  }, [])
+  }, [ingredientsList])
 
   const ingredientOptionsColumns = [
     { id: 'name', label: 'Ingredient', minWidth: 80 },
@@ -34,6 +39,7 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
 
   const addIngredientToRecipe = (ingredient, event) => {
     if (event.target.checked === true) {
+      ingredient.quantity = 0
       setRecipeIngredient((recipeIngredients) => [
         ...recipeIngredients,
         ingredient
@@ -46,7 +52,13 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
   }
 
   const addNewIngredientOption = () => {
-    if (ingredientData.ingredientName !== '' && ingredientData.ingredientName.length !== 50) {
+    const ingredientNameValidation = !!(ingredientData.ingredientName !== '' || ingredientData.ingredientName.length === 50)
+    const ingredientUnitValidation = !!(ingredientData.ingredientUnit !== '')
+
+    console.log(ingredientUnitValidation)
+
+    console.log(ingredientNameValidation)
+    if (ingredientNameValidation && ingredientUnitValidation) {
       setIngredientList((ingredientsList) => [
         ...ingredientsList,
         {
@@ -56,9 +68,16 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
         }
       ])
     } else {
-      console.log('There is no ingredient, or the ingredient name is to big')
+      console.log('There is no ingredient or unit specified')
     }
+
+    setIngredientValidation({
+      ...addIngredientValidation,
+      validIngredientName: ingredientNameValidation,
+      validIngredientUnit: ingredientUnitValidation
+    })
   }
+
   return (
     <div className="ingredient_options_container">
       <Paper className="ingredients_options">
@@ -129,6 +148,13 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
         />
         <span className="new_ingredient_span"></span>
       </div>
+      {!addIngredientValidation.validIngredientName &&
+        <div className='flex-container'>
+          <span className="new_ingredient_span"></span>
+          <span className="newIngredientError">Invalid input</span>
+          <span className="new_ingredient_span"></span>
+        </div>
+      }
       <div className="flex-container">
         <span className="new_ingredient_span"></span>
         <FormControl className="measurementUnitForm">
@@ -155,6 +181,13 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
         </FormControl>
         <span className="new_ingredient_span"></span>
       </div>
+      {!addIngredientValidation.validIngredientUnit &&
+        <div className='flex-container'>
+          <span className="new_ingredient_span"></span>
+          <span className="newIngredientError">Invalid input</span>
+          <span className="new_ingredient_span"></span>
+        </div>
+      }
       <div className="flex-container">
         <span className="new_ingredient_span"></span>
         <Button size="medium" onClick={addNewIngredientOption}>

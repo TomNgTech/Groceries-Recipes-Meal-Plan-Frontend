@@ -35,3 +35,14 @@
   flex-shrink: 0;
   min-width: 100px;
 }
+
+.invalidInput {
+  color: red;
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
+
+.invalidQuantity {
+  color: red;
+  margin-bottom: -20px;
+}
