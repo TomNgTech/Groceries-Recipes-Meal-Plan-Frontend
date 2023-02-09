@@ -1,5 +1,5 @@
 .ingredients_options {
-  max-height: 300px;
+  max-height: 220px;
   overflow: hidden;
   min-width: 50px;
   margin-bottom: 30px;
@@ -15,7 +15,7 @@
 }
 
 .ingredients_options_table {
-  max-height: 300px;
+  max-height: 220px;
 }
 
 .new_ingredient_textfield {
@@ -34,4 +34,14 @@
   flex-grow: 1;
   flex-shrink: 0;
   min-width: 100px;
+}
+
+.measurementUnitForm {
+  flex-grow: 4;
+}
+
+.newIngredientError {
+  color: red;
+  margin-top: -20px;
+  margin-bottom: -20px;
 }
