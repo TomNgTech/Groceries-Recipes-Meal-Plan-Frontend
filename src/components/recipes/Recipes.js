@@ -35,6 +35,16 @@ function Recipes () {
     }
   }
 
+  const handleUpdate = (recipe) => {
+    const updatedRecipes = recipes.map((item) => {
+      if (item.id === recipe.id) {
+        return recipe
+      } else {
+        return item
+      }
+    })
+    setRecipes(updatedRecipes)
+  }
   const handleClose = () => {
     if (openModal.openAddRecipeModal === true) {
       setOpenModal({
@@ -106,9 +116,9 @@ function Recipes () {
         </Table>
         <Modal open={openModal.openDetailModal} onClose={handleClose}>
           <RecipeDetails
-            dishName={selectedRecipe.dishName}
-            ingredients={selectedRecipe.ingredients}
+            recipe={selectedRecipe}
             handleClose={handleClose}
+            handleUpdate={handleUpdate}
           />
         </Modal>
       </TableContainer>
