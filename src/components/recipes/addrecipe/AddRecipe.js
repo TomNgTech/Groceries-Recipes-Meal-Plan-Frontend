@@ -5,6 +5,7 @@ import { Button } from '@mui/material'
 import './AddRecipe.css'
 import RecipeIngredientsTable from './RecipeIngredientsTable.js'
 import IngredientOptions from './IngredientOptions.js'
+import { addRecipe } from '../../Api'
 
 function AddRecipe ({ setRecipes, recipes, handleClose }) {
   const [recipeIngredients, setRecipeIngredient] = useState([])
@@ -20,16 +21,25 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
     const recipeIngredientsValidation = validateRecipeIngredients()
 
     if (recipeNameValidation && recipeIngredientsValidation) {
-      setRecipes((recipes) => [
-        ...recipes,
-        {
-          dishName: recipeName,
-          id: recipes.length + 1,
-          ingredients: recipeIngredients,
-          servingSize: 1
-        }
-      ])
-      handleClose()
+      const filteredIngredientArray = recipeIngredients.map(({ id, createdAt, updatedAt, ...ingredient }) => {
+        ingredient.quantity = parseInt(ingredient.quantity)
+        return ingredient
+      })
+
+      const recipe = {
+        id: crypto.randomUUID(),
+        dishName: recipeName,
+        ingredients: filteredIngredientArray,
+        servingSize: 1
+      }
+
+      addRecipe(recipe).then(data => {
+        setRecipes((recipes) => [
+          ...recipes,
+          recipe
+        ])
+        handleClose()
+      })
     } else {
       console.log(
         'Recipe name is missing, no ingredients or missing quantity'
