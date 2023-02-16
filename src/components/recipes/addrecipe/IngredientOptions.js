@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper'
 import DeleteIcon from '@mui/icons-material/Delete'
 import './IngredientOptions.css'
 import { Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import { fetchIngredients } from '../../Api'
+import { fetchIngredients, addIngredient, deleteIngredient } from '../../Api'
 
 function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
   const [ingredientData, setNewIngredientData] = useState({
@@ -55,27 +55,48 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
     const ingredientNameValidation = !!(ingredientData.ingredientName !== '' || ingredientData.ingredientName.length === 50)
     const ingredientUnitValidation = !!(ingredientData.ingredientUnit !== '')
 
-    console.log(ingredientUnitValidation)
+    let highestId = -1
 
-    console.log(ingredientNameValidation)
+    ingredientsList.forEach(ingredient => {
+      const ingredientId = parseInt(ingredient.id)
+      if (ingredientId > highestId) {
+        highestId = parseInt(ingredient.id)
+      }
+    })
+    const ingredientId = highestId + 1
+
+    const newIngredient = {
+      id: ingredientId.toString(),
+      name: ingredientData.ingredientName,
+      measurementType: ingredientData.ingredientUnit
+    }
+
     if (ingredientNameValidation && ingredientUnitValidation) {
-      setIngredientList((ingredientsList) => [
-        ...ingredientsList,
-        {
-          id: ingredientsList.length + 1,
-          name: ingredientData.ingredientName,
-          measurementType: ingredientData.ingredientUnit
-        }
-      ])
+      addIngredient(newIngredient).then(data => {
+        setIngredientList((ingredientsList) => [
+          ...ingredientsList,
+          newIngredient
+        ])
+        console.log(data)
+      })
     } else {
       console.log('There is no ingredient or unit specified')
     }
-
     setIngredientValidation({
       ...addIngredientValidation,
       validIngredientName: ingredientNameValidation,
       validIngredientUnit: ingredientUnitValidation
     })
+  }
+
+  const deleteIngredientHandler = (ingredientId) => {
+    if (ingredientId !== '') {
+      deleteIngredient(ingredientId)
+    }
+
+    setIngredientList((ingredientsList) =>
+      ingredientsList.filter((ingredient) => ingredient.id !== ingredientId)
+    )
   }
 
   return (
@@ -129,7 +150,7 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
                       key={ingredientOptionsColumns.id}
                       align={ingredientOptionsColumns.align}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon onClick={(e) => { deleteIngredientHandler(ingredient.id) }} />
                     </TableCell>
                   </TableRow>
                 )
