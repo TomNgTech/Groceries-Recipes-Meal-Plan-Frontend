@@ -1,3 +1,9 @@
+.recipeName {
+  cursor: pointer;
+}
+.Delete {
+  cursor: pointer;
+}
 .center {
   display: flex;
   justify-content: center;
