@@ -3,21 +3,19 @@ import { Link } from 'react-router-dom'
 
 function MainNavigation () {
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/recipes">Recipes</Link>
-          </li>
-          <li>
-            <Link to="mealplan">Meal Plan</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <nav data-testid="nav-bar">
+      <ul>
+        <li>
+          <Link data-testid="home-link" to="/">Home</Link>
+        </li>
+        <li>
+          <Link data-testid="recipes" to="/recipes">Recipes</Link>
+        </li>
+        <li>
+          <Link data-testid="meal-plan" to="/mealplan">Meal Plan</Link>
+        </li>
+      </ul>
+    </nav>
   )
 }
 
