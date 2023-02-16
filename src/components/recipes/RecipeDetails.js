@@ -20,6 +20,7 @@ export default function RecipeDetails (props) {
     p: 4
   }
 
+  const [ingredients, setIngredients] = React.useState(props.recipe.ingredients)
   const [edit, setEdit] = React.useState(false)
   const [recipeName, setRecipeName] = React.useState(props.recipe.dishName)
   const editRecipe = () => {
@@ -27,10 +28,20 @@ export default function RecipeDetails (props) {
   }
 
   const updateRecipe = (recipe) => {
+    const filteredIngredientArray = ingredients.map(({ id, createdAt, updatedAt, ...ingredient }) => {
+      ingredient.quantity = parseInt(ingredient.quantity)
+      return ingredient
+    })
+    const updatedRecipe = {
+      id: recipe.id,
+      dishName: recipeName,
+      ingredients: filteredIngredientArray,
+      servingSize: recipe.servingSize
+    }
+
     setEdit(false)
-    props.handleUpdate(recipe)
+    props.handleUpdate(updatedRecipe)
     props.handleClose()
-    // call api to update recipe
   }
   if (!edit) {
     return (
@@ -64,15 +75,15 @@ export default function RecipeDetails (props) {
         </Grid>
         <Grid item xs={12} container direction="row" spacing={2} className="center" alignItems="flex-start">
           <Grid item>
-          <RecipeIngredientsTable recipeIngredients={props.recipe.ingredients} />
+          <RecipeIngredientsTable recipeIngredients={ingredients} setRecipeIngredient={setIngredients}/>
           </Grid>
           <Grid item>
-          <IngredientOptions recipeIngredients={props.recipe.ingredients} />
+          <IngredientOptions recipeIngredients={ingredients} setRecipeIngredient={setIngredients}/>
           </Grid>
 
         </Grid>
         <Grid item xs={4} className="center">
-          <Button onClick={updateRecipe}>Update Recipe</Button>
+          <Button onClick={(e) => updateRecipe(props.recipe)}>Update Recipe</Button>
           <Button onClick={props.handleClose}>Close Modal</Button>
         </Grid>
       </Grid>
