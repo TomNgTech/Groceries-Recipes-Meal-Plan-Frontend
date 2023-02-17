@@ -139,6 +139,7 @@ function IngredientOptions ({ setRecipeIngredient, recipeIngredients }) {
                       <FormControlLabel
                         control={
                           <Checkbox
+                            checked = {recipeIngredients.some((item) => item.name === ingredient.name)}
                             onChange={(e) =>
                               addIngredientToRecipe(ingredient, e)
                             }

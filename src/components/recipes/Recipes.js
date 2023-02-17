@@ -7,11 +7,12 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import DeleteIcon from '@mui/icons-material/Delete'
 import { Button } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import RecipeDetails from './RecipeDetails'
 import AddRecipe from './addrecipe/AddRecipe'
-import { fetchRecipes } from '../Api'
+import { deleteRecipe, fetchRecipes, updateRecipe } from '../Api'
 
 function Recipes () {
   const [recipes, setRecipes] = useState([])
@@ -35,6 +36,24 @@ function Recipes () {
     }
   }
 
+  const handleUpdate = (recipe) => {
+    updateRecipe(recipe).then((data) => {
+      const updatedRecipes = recipes.map((item) => {
+        if (item.id === recipe.id) {
+          return data
+        } else {
+          return item
+        }
+      })
+      setRecipes(updatedRecipes)
+    })
+  }
+
+  const handleDelete = (recipeId) => {
+    deleteRecipe(recipeId)
+    const updatedRecipes = recipes.filter((item) => item.id !== recipeId)
+    setRecipes(updatedRecipes)
+  }
   const handleClose = () => {
     if (openModal.openAddRecipeModal === true) {
       setOpenModal({
@@ -89,16 +108,18 @@ function Recipes () {
           <TableBody>
             {recipes.map((recipe) => (
               <TableRow
-                onClick={() => {
-                  handleOpen('Detail')
-                  setSelectedRecipe(recipe)
-                }}
                 key={recipe.dishName}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="right">{recipe.dishName}</TableCell>
+                <TableCell className='recipeName' align="right" onClick={() => {
+                  handleOpen('Detail')
+                  setSelectedRecipe(recipe)
+                }}>{recipe.dishName}</TableCell>
                 <TableCell align="right">
                   {joinIngredients(recipe.ingredients)}
+                </TableCell>
+                <TableCell align="right">
+                  <DeleteIcon className='Delete' onClick={(e) => { handleDelete(recipe.id) }} />
                 </TableCell>
               </TableRow>
             ))}
@@ -106,9 +127,9 @@ function Recipes () {
         </Table>
         <Modal open={openModal.openDetailModal} onClose={handleClose}>
           <RecipeDetails
-            dishName={selectedRecipe.dishName}
-            ingredients={selectedRecipe.ingredients}
+            recipe={selectedRecipe}
             handleClose={handleClose}
+            handleUpdate={handleUpdate}
           />
         </Modal>
       </TableContainer>
