@@ -108,7 +108,7 @@ function Recipes () {
           <TableBody>
             {recipes.map((recipe) => (
               <TableRow
-                key={recipe.dishName}
+                key={recipe.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell className='recipeName' align="right" onClick={() => {

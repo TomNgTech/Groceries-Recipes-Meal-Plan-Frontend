@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import DisplayRecipeIngredients from './displayRecipeIngredients'
+import DisplayRecipeIngredients from './DisplayRecipeIngredients'
 import { Button, TextField, Grid } from '@mui/material'
 import RecipeIngredientsTable from './addrecipe/RecipeIngredientsTable.js'
 import IngredientOptions from './addrecipe/IngredientOptions'
