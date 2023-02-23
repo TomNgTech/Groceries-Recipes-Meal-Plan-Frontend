@@ -1,0 +1,16 @@
+.grid{
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.Title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.recipeBox{
+    border: 2px solid lightseagreen;
+    border-radius: 8px;
+    padding: 10px;
+}
