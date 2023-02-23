@@ -27,7 +27,6 @@ function AddRecipe ({ setRecipes, recipes, handleClose }) {
       })
 
       const recipe = {
-        id: crypto.randomUUID(),
         dishName: recipeName,
         ingredients: filteredIngredientArray,
         servingSize: 1
