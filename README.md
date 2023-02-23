@@ -1,3 +1,42 @@
+# Groceries - Recipes - Meal Plans React App
+
+General info about the app
+
+## Cloud Architecture
+
+The React front-end Groceries - Recipes - Meal Plans app was created and maintained using the following **AWS** Cloud Resources:
+
+- 1 set of AWS public **Virtual Private Cloud**: 1 VPC + 2 Subnets +  1 Route Table + 1 Network Connection (Internet Gateway)
+- 1 set of AWS **Security Groups Policy** to allow public internet traffic to access the EC2 instance.
+- 1 AWS **EC2** instance (ubuntu 20.04) functions as a web server to serve static HTML/CSS/Javascript files (compiled using `npm run build` within the React app).
+- 1 AWS **Elastic IP Address** attached to the EC2 instance so that the public IP address of the React app will not change in case of a sudden server shutdown.
+  
+### Create AWS VPC
+
+Info on how to create an AWS VPC
+
+### Create AWS Security Group Policy
+
+Info on how to create an AWS Security Group Policy
+
+### Create AWS EC2 Instance
+
+Info on how to create an AWS EC2 Instance
+
+### Create AWS Elastic IP Address
+
+Info on how to create an AWS Elastic IP Address
+
+## Continuous Integration / Continuous Delivery (CI/CD)
+
+### Continuous Integration (CI) Pipeline
+
+Info about CI
+
+### Continuous Delivery (CD) Pipeline
+
+Info about CD
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
