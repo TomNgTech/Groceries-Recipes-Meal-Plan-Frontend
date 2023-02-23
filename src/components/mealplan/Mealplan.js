@@ -1,6 +1,5 @@
 import React from 'react'
 import './Mealplan.css'
-import Typography from '@mui/material/Typography'
 import MealPlanCard from './MealplanCard'
 import { Grid } from '@mui/material'
 
@@ -17,7 +16,6 @@ function createGridItems () {
 function MealPlan () {
   return (
     <>
-      <Typography variant="h3" className='Title'> My Meal Plan</Typography>
       <Grid container spacing={3} className="grid">
         {createGridItems()}
       </Grid>
