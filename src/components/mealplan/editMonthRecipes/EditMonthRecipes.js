@@ -1,18 +1,18 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
 import RecipeOptionsTable from './RecipeOptionsTable'
 import RecipesTable from './RecipesTable'
 
 function editMonthrecipes () {
+  const hello = 'hello world'
   return (
         <Box className="container">
             <div className="flex-container">
                 <span className="general_usage_span"></span>
-                <TextField
-                    id="demo-helper-text-aligned"
-                    label="Recipe Name"
-                    className="recipe_name"
-                />
+                <Typography variant="h4" className="recipe_name" gutterBottom>
+                    {hello}
+                </Typography>
+
                 <span className="general_usage_span"></span>
             </div>
 
@@ -28,7 +28,7 @@ function editMonthrecipes () {
                     variant="outlined"
                     size="large"
                 >
-                    Submit Recipe
+                    Edit Recipe
                 </Button>
                 <span className="new_ingredient_span"></span>
             </div>

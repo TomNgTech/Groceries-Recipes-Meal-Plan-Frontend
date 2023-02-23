@@ -3,9 +3,8 @@ import React from 'react'
 
 function RecipeOptionsTable () {
   const recipeIngredientsColumns = [
-    { id: 'name', label: 'Recipe Ingredient', minWidth: 80 },
-    { id: 'quantity', label: 'Quantity', minWidth: 30 },
-    { id: 'unit', label: 'Unit', minWidth: 30 }
+    { id: 'name', label: 'Name', minWidth: 80 },
+    { id: 'add', label: 'Add Recipe', minWidth: 30 }
   ]
   return (
         <Paper className="recipe_ingredients">
