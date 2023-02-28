@@ -8,7 +8,7 @@ import RecipeIngredientsTable from './addrecipe/RecipeIngredientsTable.js'
 import IngredientOptions from './addrecipe/IngredientOptions'
 import Container from '@mui/material/Container'
 
-export default function RecipeDetails(props) {
+export default function RecipeDetails (props) {
   const [ingredients, setIngredients] = React.useState(props.recipe.ingredients)
   const [edit, setEdit] = React.useState(false)
   const [recipeName, setRecipeName] = React.useState(props.recipe.dishName)

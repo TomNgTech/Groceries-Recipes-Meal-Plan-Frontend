@@ -15,7 +15,7 @@ import RecipeDetails from './RecipeDetails'
 import AddRecipe from './addrecipe/AddRecipe'
 import { deleteRecipe, fetchRecipes, updateRecipe } from '../Api'
 
-function Recipes() {
+function Recipes () {
   const [recipes, setRecipes] = useState([])
 
   const [openModal, setOpenModal] = useState({
