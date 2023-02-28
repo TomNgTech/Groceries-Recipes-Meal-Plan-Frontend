@@ -15,7 +15,7 @@ import RecipeDetails from './RecipeDetails'
 import AddRecipe from './addrecipe/AddRecipe'
 import { deleteRecipe, fetchRecipes, updateRecipe } from '../Api'
 
-function Recipes () {
+function Recipes() {
   const [recipes, setRecipes] = useState([])
 
   const [openModal, setOpenModal] = useState({
@@ -94,20 +94,11 @@ function Recipes () {
         data-testid="recipeTableContainer"
         component={Paper}
         className='recipeTableContainer'
-        // sx={{ width: 600, margin: 'auto' }}
       >
-        <Table
-        sx={{ minWidth: 500 }}
-        aria-label="simple table"
-        // className='recipeTable'
-        >
+        <Table aria-label="simple table" className='recipeTable'>
           <TableHead>
             <TableRow>
-              <TableCell
-              data-testid="RecipeHeaders"
-              className='recipeTableCell'
-              // align="right"
-              >
+              <TableCell data-testid="RecipeHeaders" className='recipeTableCell'>
                 Recipes
               </TableCell>
               <TableCell className='recipeTableCell' data-testid="IngredientHeader">
@@ -119,7 +110,6 @@ function Recipes () {
             {recipes.map((recipe) => (
               <TableRow
                 key={recipe.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell className='recipeTableCell' onClick={() => {
                   handleOpen('Detail')

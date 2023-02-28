@@ -8,19 +8,7 @@ import RecipeIngredientsTable from './addrecipe/RecipeIngredientsTable.js'
 import IngredientOptions from './addrecipe/IngredientOptions'
 import Container from '@mui/material/Container'
 
-export default function RecipeDetails (props) {
-  const style = {
-    position: 'absolute',
-    transform: 'translate(-50%, -50%)',
-    top: '50%',
-    left: '50%',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    minWidth: 800,
-    boxShadow: 24,
-    p: 4
-  }
-
+export default function RecipeDetails(props) {
   const [ingredients, setIngredients] = React.useState(props.recipe.ingredients)
   const [edit, setEdit] = React.useState(false)
   const [recipeName, setRecipeName] = React.useState(props.recipe.dishName)
@@ -46,48 +34,48 @@ export default function RecipeDetails (props) {
   }
   if (!edit) {
     return (
-    <Box sx={style}>
-      <Typography variant="h3" className="center">
-        {props.recipe.dishName}
-      </Typography>
-      <Typography variant="h4" className="center">
-        Ingredients
-      </Typography>
-      <Container>
-        <DisplayRecipeIngredients ingredients={props.recipe.ingredients} />
-      </Container>
-      <div className="center">
-        <Button onClick={editRecipe}>Edit Recipe</Button>
-        <Button onClick={props.handleClose}>Close Modal</Button>
-      </div>
-    </Box>
+      <Box className="box">
+        <Typography variant="h3" className="center">
+          {props.recipe.dishName}
+        </Typography>
+        <Typography variant="h4" className="center">
+          Ingredients
+        </Typography>
+        <Container>
+          <DisplayRecipeIngredients ingredients={props.recipe.ingredients} />
+        </Container>
+        <div className="center">
+          <Button onClick={editRecipe}>Edit Recipe</Button>
+          <Button onClick={props.handleClose}>Close Modal</Button>
+        </div>
+      </Box>
     )
   } else {
     return (
-      <Box sx={style}>
-      <Grid container spacing={2} className="center column">
-        <Grid item xs={6} className="center">
-          <TextField
-            label="Recipe Name"
-            defaultValue={recipeName}
-            className="center"
-            onChange={(e) => setRecipeName(e.target.value)}>
-          </TextField>
-        </Grid>
-        <Grid item xs={12} container spacing={2} className="center row">
-          <Grid item>
-          <RecipeIngredientsTable recipeIngredients={ingredients} setRecipeIngredient={setIngredients}/>
+      <Box className="box">
+        <Grid container spacing={2} className="center column">
+          <Grid item xs={6} className="center">
+            <TextField
+              label="Recipe Name"
+              defaultValue={recipeName}
+              className="center"
+              onChange={(e) => setRecipeName(e.target.value)}>
+            </TextField>
           </Grid>
-          <Grid item>
-          <IngredientOptions recipeIngredients={ingredients} setRecipeIngredient={setIngredients}/>
-          </Grid>
+          <Grid item xs={12} container spacing={2} className="center row">
+            <Grid item>
+              <RecipeIngredientsTable recipeIngredients={ingredients} setRecipeIngredient={setIngredients} />
+            </Grid>
+            <Grid item>
+              <IngredientOptions recipeIngredients={ingredients} setRecipeIngredient={setIngredients} />
+            </Grid>
 
+          </Grid>
+          <Grid item xs={4} className="center">
+            <Button onClick={(e) => updateRecipe(props.recipe)}>Update Recipe</Button>
+            <Button onClick={props.handleClose}>Close Modal</Button>
+          </Grid>
         </Grid>
-        <Grid item xs={4} className="center">
-          <Button onClick={(e) => updateRecipe(props.recipe)}>Update Recipe</Button>
-          <Button onClick={props.handleClose}>Close Modal</Button>
-        </Grid>
-      </Grid>
       </Box>
     )
   }

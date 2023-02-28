@@ -8,13 +8,25 @@
     align-items: center;
 }
 
+.box{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border: 2px solid #000;
+    background-color: white;
+    min-width: 800px;
+    box-shadow: 24;
+    padding: 32px;
+}
+
 .recipeTableContainer{
     max-width: 600px;
     margin: auto;
 }
 
 .recipeTable{
-   max-width: 500px;
+   min-width: 500px;
 }
 
 .recipeTableCell{
