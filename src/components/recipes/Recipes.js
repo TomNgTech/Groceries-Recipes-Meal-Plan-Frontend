@@ -98,10 +98,10 @@ function Recipes () {
         <Table aria-label="simple table" className='recipeTable'>
           <TableHead>
             <TableRow>
-              <TableCell data-testid="RecipeHeaders" className='recipeTableCell'>
+              <TableCell data-testid="RecipeHeaders" align='right'>
                 Recipes
               </TableCell>
-              <TableCell className='recipeTableCell' data-testid="IngredientHeader">
+              <TableCell data-testid="IngredientHeader" align='right'>
                 Ingredients
               </TableCell>
             </TableRow>
@@ -111,14 +111,14 @@ function Recipes () {
               <TableRow
                 key={recipe.id}
               >
-                <TableCell className='recipeTableCell' onClick={() => {
+                <TableCell align="right" onClick={() => {
                   handleOpen('Detail')
                   setSelectedRecipe(recipe)
                 }}>{recipe.dishName}</TableCell>
-                <TableCell className='recipeTableCell' >
+                <TableCell align='right'>
                   {joinIngredients(recipe.ingredients)}
                 </TableCell>
-                <TableCell className='recipeTableCell'>
+                <TableCell align='right'>
                   <DeleteIcon className='Delete' onClick={(e) => { handleDelete(recipe.id) }} />
                 </TableCell>
               </TableRow>
