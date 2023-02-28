@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
+import './Recipes.css'
 import Box from '@mui/material/Box'
 import DisplayRecipeIngredients from './DisplayRecipeIngredients'
 import { Button, TextField, Grid } from '@mui/material'
@@ -64,7 +65,7 @@ export default function RecipeDetails (props) {
   } else {
     return (
       <Box sx={style}>
-      <Grid container spacing={2} direction="column">
+      <Grid container spacing={2} className="center column">
         <Grid item xs={6} className="center">
           <TextField
             label="Recipe Name"
@@ -73,7 +74,7 @@ export default function RecipeDetails (props) {
             onChange={(e) => setRecipeName(e.target.value)}>
           </TextField>
         </Grid>
-        <Grid item xs={12} container direction="row" spacing={2} className="center" alignItems="flex-start">
+        <Grid item xs={12} container spacing={2} className="center row">
           <Grid item>
           <RecipeIngredientsTable recipeIngredients={ingredients} setRecipeIngredient={setIngredients}/>
           </Grid>

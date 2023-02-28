@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './Recipes.css'
 import Typography from '@mui/material/Typography'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -92,15 +93,24 @@ function Recipes () {
       <TableContainer
         data-testid="recipeTableContainer"
         component={Paper}
-        sx={{ width: 600, margin: 'auto' }}
+        className='recipeTableContainer'
+        // sx={{ width: 600, margin: 'auto' }}
       >
-        <Table sx={{ minWidth: 500 }} aria-label="simple table">
+        <Table
+        sx={{ minWidth: 500 }}
+        aria-label="simple table"
+        // className='recipeTable'
+        >
           <TableHead>
             <TableRow>
-              <TableCell data-testid="RecipeHeaders" align="right">
+              <TableCell
+              data-testid="RecipeHeaders"
+              className='recipeTableCell'
+              // align="right"
+              >
                 Recipes
               </TableCell>
-              <TableCell data-testid="IngredientHeader" align="right">
+              <TableCell className='recipeTableCell' data-testid="IngredientHeader">
                 Ingredients
               </TableCell>
             </TableRow>
@@ -111,14 +121,14 @@ function Recipes () {
                 key={recipe.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell className='recipeName' align="right" onClick={() => {
+                <TableCell className='recipeTableCell' onClick={() => {
                   handleOpen('Detail')
                   setSelectedRecipe(recipe)
                 }}>{recipe.dishName}</TableCell>
-                <TableCell align="right">
+                <TableCell className='recipeTableCell' >
                   {joinIngredients(recipe.ingredients)}
                 </TableCell>
-                <TableCell align="right">
+                <TableCell className='recipeTableCell'>
                   <DeleteIcon className='Delete' onClick={(e) => { handleDelete(recipe.id) }} />
                 </TableCell>
               </TableRow>
