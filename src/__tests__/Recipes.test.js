@@ -2,79 +2,41 @@
  * @jest-environment jsdom
  */
 import React from 'react'
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
-import Typography from '@mui/material/Typography'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import { Button } from '@mui/material'
+import { render, screen, act } from '@testing-library/react'
 import { mockRecipes } from '../MockTestData/mockRecipeData'
+import Recipes from '../components/recipes/Recipes'
+import { jest, test } from '@jest/globals'
+import '@testing-library/jest-dom'
 
-// tests for Recipe Page
-describe('<Recipes/>', () => {
-  const recipes = mockRecipes
-  const joinIngredients = (ingredients) => {
-    const ingredientNames = []
-    for (let j = 0; j < ingredients.length; j++) {
-      ingredientNames.push(ingredients[j].name)
-    }
+describe('Recipe Component', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn().mockImplementation()
 
-    return ingredientNames.join(', ')
-  }
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+      json: jest.fn().mockResolvedValue(mockRecipes)
+    })
+  })
 
-  const setup = () =>
-    render(
-      <>
-        <Typography variant="h3" data-testid="RecipeIntro" className="center">
-          My Recipes page
-        </Typography>
-        <TableContainer
-          data-testid="recipeTableContainer"
-          component={Paper}
-          sx={{ width: 600, margin: 'auto' }}
-        >
-          <Table sx={{ minWidth: 500 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell data-testid="RecipeHeaders" align="right">
-                  Recipes
-                </TableCell>
-                <TableCell data-testid="IngredientHeader" align="right">
-                  Ingredients
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {recipes.map((recipe) => (
-                <TableRow
-                  onClick={() => console.log(recipe)}
-                  key={recipe.dishName}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell data-testid="trTest" align="right">
-                    {recipe.dishName}
-                  </TableCell>
-                  <TableCell align="right">
-                    {joinIngredients(recipe.ingredients)}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <div className="center">
-          <Button> Add Recipe</Button>
-        </div>
-      </>
-    )
+  afterEach(() => {
+    jest.restoreAllMocks()
+    global.fetch.mockClear()
+    delete global.fetch
+  })
 
-  test('should render without crashing', () => {
-    setup()
+  test('should render properly', async () => {
+    await act(async () => {
+      return render(<Recipes />)
+    })
+
+    const pageTitle = screen.getByTestId('RecipeIntro')
+    expect(pageTitle).toBeInTheDocument()
+  })
+
+  test('should render without crashing', async () => {
+    await act(async () => {
+      return render(<Recipes />)
+    })
+
     expect(screen).toBeDefined()
     expect(
       screen.getByRole('heading', { name: 'My Recipes page' })
