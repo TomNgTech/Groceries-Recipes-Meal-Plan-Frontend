@@ -8,7 +8,7 @@ import IngredientOptions from './addrecipe/IngredientOptions'
 import Container from '@mui/material/Container'
 import './RecipeDetails.css'
 
-export default function RecipeDetails(props) {
+export default function RecipeDetails (props) {
   const style = {
     position: 'absolute',
     transform: 'translate(-50%, -50%)',
@@ -18,7 +18,7 @@ export default function RecipeDetails(props) {
     border: '2px solid #000',
     minWidth: 800,
     boxShadow: 24,
-    p: 4,
+    p: 4
   }
 
   const [ingredients, setIngredients] = React.useState(props.recipe.ingredients)
@@ -33,13 +33,13 @@ export default function RecipeDetails(props) {
       ({ id, createdAt, updatedAt, ...ingredient }) => {
         ingredient.quantity = parseInt(ingredient.quantity)
         return ingredient
-      },
+      }
     )
     const updatedRecipe = {
       id: recipe.id,
       dishName: recipeName,
       ingredients: filteredIngredientArray,
-      servingSize: recipe.servingSize,
+      servingSize: recipe.servingSize
     }
 
     setEdit(false)
