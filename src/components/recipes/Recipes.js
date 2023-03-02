@@ -15,24 +15,24 @@ import AddRecipe from './addrecipe/AddRecipe'
 import { deleteRecipe, fetchRecipes, updateRecipe } from '../Api'
 import './Recipes.css'
 
-function Recipes() {
+function Recipes () {
   const [recipes, setRecipes] = useState([])
 
   const [openModal, setOpenModal] = useState({
     openDetailModal: false,
-    openAddRecipeModal: false,
+    openAddRecipeModal: false
   })
 
   const handleOpen = (modalType) => {
     if (modalType === 'Detail') {
       setOpenModal({
         ...openModal,
-        openDetailModal: true,
+        openDetailModal: true
       })
     } else {
       setOpenModal({
         ...openModal,
-        openAddRecipeModal: true,
+        openAddRecipeModal: true
       })
     }
   }
@@ -59,12 +59,12 @@ function Recipes() {
     if (openModal.openAddRecipeModal === true) {
       setOpenModal({
         ...openModal,
-        openAddRecipeModal: false,
+        openAddRecipeModal: false
       })
     } else {
       setOpenModal({
         ...openModal,
-        openDetailModal: false,
+        openDetailModal: false
       })
     }
   }
