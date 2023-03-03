@@ -87,6 +87,21 @@ export async function updateRecipe (recipe) {
   }
 }
 
+export async function getRecipeById (recipeId) {
+  try {
+    const res = await fetch('http://52.37.204.183/recipes/' + recipeId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export async function deleteRecipe (recipeId) {
   console.log('recipeid: ' + recipeId)
   try {
@@ -145,5 +160,6 @@ export async function getMealPlanByMonth (month) {
     return data
   } catch (err) {
     console.log(err)
+    return null
   }
 }
