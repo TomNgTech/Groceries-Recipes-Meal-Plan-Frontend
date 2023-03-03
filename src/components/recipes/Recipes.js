@@ -13,6 +13,7 @@ import Modal from '@mui/material/Modal'
 import RecipeDetails from './RecipeDetails'
 import AddRecipe from './addrecipe/AddRecipe'
 import { deleteRecipe, fetchRecipes, updateRecipe } from '../Api'
+import './Recipes.css'
 
 function Recipes () {
   const [recipes, setRecipes] = useState([])
@@ -79,47 +80,58 @@ function Recipes () {
   }
 
   useEffect(() => {
-    fetchRecipes().then(data => {
+    fetchRecipes().then((data) => {
       setRecipes(data)
     })
   }, [])
 
   return (
     <>
-      <Typography variant="h3" data-testid="RecipeIntro" className="center">
-        My Recipes page
+      <Typography
+        variant='h3'
+        data-testid='RecipeIntro'
+        className='center'
+        style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 'bold' }}
+      >
+        My Recipes
       </Typography>
       <TableContainer
-        data-testid="recipeTableContainer"
+        data-testid='recipeTableContainer'
         component={Paper}
         sx={{ width: 600, margin: 'auto' }}
       >
-        <Table sx={{ minWidth: 500 }} aria-label="simple table">
+        <Table sx={{ minWidth: 500 }} aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell data-testid="RecipeHeaders" align="right">
+              <TableCell data-testid='RecipeHeaders' align='right'>
                 Recipes
               </TableCell>
-              <TableCell data-testid="IngredientHeader" align="right">
+              <TableCell data-testid='IngredientHeader' align='right'>
                 Ingredients
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {recipes.map((recipe) => (
-              <TableRow
-                key={recipe.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell className='recipeName' align="right" onClick={() => {
-                  handleOpen('Detail')
-                  setSelectedRecipe(recipe)
-                }}>{recipe.dishName}</TableCell>
-                <TableCell align="right">
-                  {joinIngredients(recipe.ingredients)}
+              <TableRow key={recipe.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell
+                  className='recipeName'
+                  align='right'
+                  onClick={() => {
+                    handleOpen('Detail')
+                    setSelectedRecipe(recipe)
+                  }}
+                >
+                  {recipe.dishName}
                 </TableCell>
-                <TableCell align="right">
-                  <DeleteIcon className='Delete' onClick={(e) => { handleDelete(recipe.id) }} />
+                <TableCell align='right'>{joinIngredients(recipe.ingredients)}</TableCell>
+                <TableCell align='right'>
+                  <DeleteIcon
+                    className='Delete'
+                    onClick={(e) => {
+                      handleDelete(recipe.id)
+                    }}
+                  />
                 </TableCell>
               </TableRow>
             ))}
@@ -133,20 +145,16 @@ function Recipes () {
           />
         </Modal>
       </TableContainer>
-      <div className="center">
+      <div className='center'>
         <Button onClick={() => handleOpen('AddRecipe')}>Add Recipe</Button>
       </div>
       <Modal
         open={openModal.openAddRecipeModal}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
       >
-        <AddRecipe
-          handleClose={handleClose}
-          setRecipes={setRecipes}
-          recipes={recipes}
-        />
+        <AddRecipe handleClose={handleClose} setRecipes={setRecipes} recipes={recipes} />
       </Modal>
     </>
   )

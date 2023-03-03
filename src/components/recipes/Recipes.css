@@ -1,0 +1,40 @@
+.center {
+  text-align: center;
+  padding: 30px;
+  color: rgb(85, 122, 146);
+}
+
+.recipeName {
+  cursor: pointer;
+}
+
+.Delete {
+  cursor: pointer;
+}
+
+body {
+  animation: bg-animation 10s linear infinite;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-color: #c0dde7;
+  }
+  50% {
+    background-color: #ffffff;
+  }
+  100% {
+    background-color: #c0dde7;
+  }
+}
+
+.recipeIntro {
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.recipeTableContainer {
+  width: 600px;
+  margin: auto;
+  background-color: white;
+}
