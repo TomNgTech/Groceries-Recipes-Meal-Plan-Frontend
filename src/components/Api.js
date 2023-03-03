@@ -116,9 +116,7 @@ export async function getAllMealPlans () {
   } catch (err) {
     console.log(err)
   }
-
 }
-
 
 export async function getMealPlanById (mealplanId) {
   try {
