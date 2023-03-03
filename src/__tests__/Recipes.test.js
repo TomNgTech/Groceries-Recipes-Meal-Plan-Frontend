@@ -39,7 +39,7 @@ describe('Recipe Component', () => {
 
     expect(screen).toBeDefined()
     expect(
-      screen.getByRole('heading', { name: 'My Recipes page' })
+      screen.getByRole('heading', { name: 'My Recipes' })
     ).toBeInTheDocument()
     expect(
       screen.getByRole('columnheader', { name: 'Recipes' })
