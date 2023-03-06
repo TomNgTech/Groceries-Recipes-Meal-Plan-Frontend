@@ -89,7 +89,6 @@ const HomeCarousel = () => {
         <MediaCard props={recipeObject[1]} />
         <MediaCard props={recipeObject[3]} />
         <MediaCard props={recipeObject[4]} />
-        <MediaCard props={recipeObject[5]} />
       </Carousel>
     </div>
   )
