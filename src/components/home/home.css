@@ -1,0 +1,103 @@
+/* Home css */
+.carousel_text {
+    position: relative; 
+    border: none;
+    text-align: center;
+    font-family: Chilanka;
+    font-size: 40px
+}
+.openningStatement{
+    margin-top: 30px;
+    position: relaitve;
+    width: 66%;
+    padding: 10px;
+    margin: auto;
+    text-align: left;
+    border: 1px solid black;
+    font-size: 30px;
+  }
+  
+ 
+  
+  @-webkit-keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @-moz-keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  .full-screen {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(https://i.imgur.com/wCG2csZ.png);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .home_carousel {
+    background: white;
+    position: relative;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+    width: 60%;
+    margin: 20px auto;
+    border: solid 1px black;
+    border-radius: 20px;
+  }
+  
+  button.BrainhubCarousel__arrows {
+    background-color: initial;
+    
+  }
+  
+  button.BrainhubCarousel__arrows {
+    background-color: initial;
+  }
+  button.BrainhubCarousel__arrows span {
+    border-color: #17a2b8;
+  }

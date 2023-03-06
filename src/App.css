@@ -19,14 +19,16 @@
   background-color: lightblue;
   color: white;
 }
-body p {
+/* body p {
+  position: relaitve;
   width: 66%;
-  margin: auto;
   padding: 10px;
+  margin: auto;
   text-align: left;
   border: 1px solid black;
-  margin-top: 20px;
-}
+  font-size: 30px;
+   
+} */
 nav ul {
   display: flex;
   justify-content: space-around;
