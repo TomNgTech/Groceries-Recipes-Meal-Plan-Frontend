@@ -28,7 +28,7 @@ function editMonthrecipes () {
                     variant="outlined"
                     size="large"
                 >
-                    Edit Recipe
+                    Edit Monthly Plan
                 </Button>
                 <span className="new_ingredient_span"></span>
             </div>
