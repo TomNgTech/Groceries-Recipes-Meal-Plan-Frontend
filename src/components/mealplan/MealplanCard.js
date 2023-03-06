@@ -1,17 +1,26 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
-import { Button, Card, CardActions, CardContent, CardHeader, Container } from '@mui/material'
+import { Button, Grid, Card, CardContent, CardHeader, Container, CardActions } from '@mui/material'
 function MealPlanCard (props) {
   return (
-    <Card>
-      <CardHeader title={props.month} subheader="25 recipes" />
-      <CardContent>
-        <Container className='recipeBox'>
-          <Typography variant="h6">Recipe 1</Typography>
-          <Typography variant="h6">Recipe 2</Typography>
-          <Typography variant="h6">Recipe 3</Typography>
-        </Container>
-      </CardContent>
+        <Card>
+            <CardHeader title={props.month}/>
+            <CardContent>
+            <Grid container className='recipeBox' spacing={0} >
+                <Grid item xs={6} direction={'column'}>
+                  <Container>
+                    <Typography variant="h3">25</Typography>
+                  </Container>
+                  <Typography variant="h5">Recipes</Typography>
+                </Grid>
+                <Grid item xs={6} direction={'column'}>
+                  <Container>
+                    <Typography variant="h3">30</Typography>
+                  </Container>
+                  <Typography variant="h5">Ingredients</Typography>
+                </Grid>
+            </Grid>
+            </CardContent>
       <CardActions>
         <Button variant="outlined"
           size="large"
@@ -19,7 +28,7 @@ function MealPlanCard (props) {
           Edit
         </Button>
       </CardActions>
-    </Card>
+        </Card>
   )
 }
 

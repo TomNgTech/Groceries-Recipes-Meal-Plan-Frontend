@@ -102,3 +102,48 @@ export async function deleteRecipe (recipeId) {
     console.log(err)
   }
 }
+
+export async function getAllMealPlans () {
+  try {
+    const res = await fetch('http://52.37.204.183/mealPlans', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function getMealPlanById (mealplanId) {
+  try {
+    const res = await fetch('http://52.37.204.183/mealPlans' + mealplanId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function getMealPlanByMonth (month) {
+  try {
+    const res = await fetch('http://52.37.204.183/mealPlans/month/' + month, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log(err)
+  }
+}
