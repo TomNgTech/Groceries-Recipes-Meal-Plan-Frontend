@@ -39,7 +39,7 @@ const HomeCarousel = () => {
       ]
     },
     {
-      name: 'Bacon Fried Rice',
+      name: 'FRIED RICE',
       image: lamb,
       description: 'Fried bacon, onions, garlic, rice, with eggs',
       ingredients: [
@@ -49,7 +49,7 @@ const HomeCarousel = () => {
       ]
     },
     {
-      name: 'Brownies',
+      name: 'BROWNIES',
       image: brownies,
       description:
         'These brownies are absolutely delicious with a fudgy texture and deep chocolate flavor. The combination of chocolate, sugar, and butter creates a decadent and indulgent treat that is hard to resist. The slightly crispy crust on top gives way to a soft, gooey interior that is pure bliss with every bite.',
@@ -62,7 +62,7 @@ const HomeCarousel = () => {
       ]
     },
     {
-      name: 'Tiramisu',
+      name: 'TIRAMISU',
       image: tiramisu,
       description:
         'An Italian dessert made with layers of ladyfingers soaked in coffee and liquor, and mascarpone cheese filling. It is dusted with cocoa powder on top, and sometimes flavored with a hint of chocolate, vanilla, or amaretto. Tiramisu is rich, creamy, and has a perfect balance of sweetness and bitterness, making it a favorite among coffee and dessert lovers.',
@@ -89,6 +89,7 @@ const HomeCarousel = () => {
         <MediaCard props={recipeObject[1]} />
         <MediaCard props={recipeObject[3]} />
         <MediaCard props={recipeObject[4]} />
+        <MediaCard props={recipeObject[5]} />
       </Carousel>
     </div>
   )
