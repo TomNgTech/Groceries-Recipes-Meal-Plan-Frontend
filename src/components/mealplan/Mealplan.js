@@ -28,10 +28,8 @@ function createGridItems () {
         console.log(monthPlans)
         recipes[i] = monthPlans.length
       }
-      return [plans, recipes]
-    }).then(array => {
-      setAllplans(array[0])
-      setRecipeNum(array[1])
+      setAllplans(plans)
+      setRecipeNum(recipes)
     })
   }, [])
 
