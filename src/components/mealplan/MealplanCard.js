@@ -1,17 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Button, Grid, Card, CardContent, CardHeader, Container, CardActions } from '@mui/material'
-import { getAllMealPlans } from '../Api'
 function MealPlanCard (props) {
-  let potato = 0
-  useEffect(() => {
-    if (potato === 0) {
-      getAllMealPlans().then((data) => {
-        console.log(data)
-        potato = 1
-      })
-    }
-  }, [])
   return (
     <Card>
       <CardHeader title={props.month} />
