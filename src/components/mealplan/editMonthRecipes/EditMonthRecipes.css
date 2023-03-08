@@ -26,3 +26,6 @@
   min-width: 100px;
 }
 
+.recipe_name {
+  width: auto;
+}

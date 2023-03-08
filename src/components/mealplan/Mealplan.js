@@ -9,26 +9,18 @@ function MealPlan () {
   const [openModal, setOpenModal] = useState(false)
   const [allplans, setAllplans] = useState([])
   const [recipeNum, setRecipeNum] = useState([])
+  const [currentViewedMonth, setCurrentViewedMonth] = useState('')
+  const [currentViewedRecipes, setCurrentViewedRecipes] = useState([])
+  const [currentViewedPlan, setCurrentViewedPlan] = useState([])
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   const gridItems = []
 
   useEffect(() => {
-    async function fetchData () {
-      const fetchedData = getAllMealPlans().then(data => {
-        return Object.values(data)
-      })
-      return fetchedData
-    }
-    fetchData().then(plans => {
+    getAllMealPlans().then(plans => {
       const recipes = []
-      for (let i = 0; i < months.length; i++) {
-        const monthPlans = plans.filter(element => {
-          return element.month === i
-        })
-        console.log('mealplans for month: ' + i)
-        console.log(monthPlans)
-        recipes[i] = monthPlans.length
+      for (let i = 0; i < plans.length; i++) {
+        recipes[i] = plans[i].weekInfo.length
       }
       setAllplans(plans)
       setRecipeNum(recipes)
@@ -37,16 +29,23 @@ function MealPlan () {
 
   const createGridItems = () => {
     for (let i = 0; i < months.length; i++) {
-      const mealplans = allplans.filter(element => {
-        return element.month === i
-      })
-      const gridItem = <Grid item xs={3} key={months[i]}> <MealPlanCard month={months[i]} mealplans={mealplans} recipeNum={recipeNum[i]}/> </Grid>
+      const gridItem = <Grid item xs={3} key={months[i]}>
+        <MealPlanCard month={months[i]} mealplan={allplans[i]}
+          recipeNum={recipeNum[i]} handleOpen={handleOpen} />
+      </Grid>
       gridItems.push(gridItem)
     }
     return gridItems
   }
   const handleClose = () => {
     setOpenModal(false)
+  }
+
+  const handleOpen = (month, mealplan, weekInfo) => {
+    setCurrentViewedPlan(mealplan)
+    setCurrentViewedRecipes(weekInfo)
+    setCurrentViewedMonth(month)
+    setOpenModal(true)
   }
 
   return (
@@ -62,6 +61,10 @@ function MealPlan () {
         aria-describedby="modal-modal-description"
       >
         <EditMonthRecipes
+          currentViewedPlan={currentViewedPlan}
+          currentViewedRecipes={currentViewedRecipes}
+          currentViewedMonth={currentViewedMonth}
+          setCurrentViewedRecipes={setCurrentViewedRecipes}
           handleClose={handleClose}
         />
       </Modal>

@@ -2,24 +2,33 @@ import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
 import RecipeOptionsTable from './RecipeOptionsTable'
 import RecipesTable from './RecipesTable'
+import './EditMonthRecipes.css'
+import { updateMealPlan } from '../../Api'
 
-function editMonthrecipes () {
-  const hello = 'hello world'
+function editMonthrecipes ({ currentViewedRecipes, currentViewedMonth, setCurrentViewedRecipes, currentViewedPlan }) {
+  console.log(currentViewedPlan)
+  const handleEditSubmission = () => {
+    console.log(currentViewedPlan)
+    console.log(currentViewedRecipes)
+    currentViewedPlan.weekInfo = currentViewedRecipes
+    console.log(currentViewedPlan)
+    updateMealPlan(currentViewedPlan)
+  }
   return (
         <Box className="container">
             <div className="flex-container">
                 <span className="general_usage_span"></span>
                 <Typography variant="h4" className="recipe_name" gutterBottom>
-                    {hello}
+                    {currentViewedMonth}
                 </Typography>
 
                 <span className="general_usage_span"></span>
             </div>
 
             <div className="table_container ">
-                <RecipesTable />
+                <RecipesTable currentViewedRecipes={currentViewedRecipes} setCurrentViewedRecipes={setCurrentViewedRecipes} />
                 <span className="general_usage_span"></span>
-                <RecipeOptionsTable />
+                <RecipeOptionsTable currentViewedRecipes={currentViewedRecipes} setCurrentViewedRecipes={setCurrentViewedRecipes} />
             </div>
 
             <div className="flex-container">
@@ -28,8 +37,9 @@ function editMonthrecipes () {
                     variant="outlined"
                     size="large"
                     className="editButton"
+                    onClick={e => handleEditSubmission()}
                 >
-                    View Monthly Plan
+                    Edit Month Plan
                 </Button>
                 <span className="new_ingredient_span"></span>
             </div>
