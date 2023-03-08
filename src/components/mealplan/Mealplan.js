@@ -7,18 +7,40 @@ import { getAllMealPlans } from '../Api'
 
 function MealPlan () {
   const [openModal, setOpenModal] = useState(false)
+  const [allplans, setAllplans] = useState([])
+  const [recipeNum, setRecipeNum] = useState([])
+
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  const gridItems = []
 
   useEffect(() => {
-    getAllMealPlans().then((data) => {
-      console.log(data)
+    async function fetchData () {
+      const fetchedData = getAllMealPlans().then(data => {
+        return Object.values(data)
+      })
+      return fetchedData
+    }
+    fetchData().then(plans => {
+      const recipes = []
+      for (let i = 0; i < months.length; i++) {
+        const monthPlans = plans.filter(element => {
+          return element.month === i
+        })
+        console.log('mealplans for month: ' + i)
+        console.log(monthPlans)
+        recipes[i] = monthPlans.length
+      }
+      setAllplans(plans)
+      setRecipeNum(recipes)
     })
-  })
+  }, [])
 
   const createGridItems = () => {
-    const gridItems = []
     for (let i = 0; i < months.length; i++) {
-      const gridItem = <Grid item xs={3} key={months[i]}> <MealPlanCard month={months[i]} setOpenModal={setOpenModal} /> </Grid>
+      const mealplans = allplans.filter(element => {
+        return element.month === i
+      })
+      const gridItem = <Grid item xs={3} key={months[i]}> <MealPlanCard month={months[i]} mealplans={mealplans} recipeNum={recipeNum[i]}/> </Grid>
       gridItems.push(gridItem)
     }
     return gridItems
