@@ -1,6 +1,7 @@
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import { Button, Grid, Card, CardContent, CardHeader, Container, CardActions } from '@mui/material'
+
 function MealPlanCard (props) {
   return (
         <Card>
@@ -9,15 +10,9 @@ function MealPlanCard (props) {
             <Grid container className='recipeBox' spacing={0} >
                 <Grid item xs={6} direction={'column'}>
                   <Container>
-                    <Typography variant="h3">25</Typography>
+                    <Typography variant="h3">{props.recipeNum}</Typography>
                   </Container>
                   <Typography variant="h5">Recipes</Typography>
-                </Grid>
-                <Grid item xs={6} direction={'column'}>
-                  <Container>
-                    <Typography variant="h3">30</Typography>
-                  </Container>
-                  <Typography variant="h5">Ingredients</Typography>
                 </Grid>
             </Grid>
             </CardContent>
