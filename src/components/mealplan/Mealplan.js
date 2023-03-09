@@ -19,12 +19,14 @@ function MealPlan () {
   useEffect(() => {
     getAllMealPlans().then(plans => {
       const recipes = []
+      plans.sort(function (a, b) { return a.month - b.month })
       for (let i = 0; i < plans.length; i++) {
         recipes[i] = plans[i].weekInfo.length
       }
       setAllplans(plans)
       setRecipeNum(recipes)
     })
+    console.log(recipeNum)
   }, [])
 
   const createGridItems = () => {
@@ -39,7 +41,7 @@ function MealPlan () {
   }
   const handleClose = (monthEdited, newRecipeCount) => {
     const newArray = recipeNum
-    newArray[monthEdited] = newRecipeCount
+    newArray[monthEdited - 1] = newRecipeCount
     setRecipeNum(newArray)
     setOpenModal(false)
   }
