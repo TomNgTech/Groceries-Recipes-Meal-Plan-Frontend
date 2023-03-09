@@ -37,7 +37,10 @@ function MealPlan () {
     }
     return gridItems
   }
-  const handleClose = () => {
+  const handleClose = (monthEdited, newRecipeCount) => {
+    const newArray = recipeNum
+    newArray[monthEdited] = newRecipeCount
+    setRecipeNum(newArray)
     setOpenModal(false)
   }
 

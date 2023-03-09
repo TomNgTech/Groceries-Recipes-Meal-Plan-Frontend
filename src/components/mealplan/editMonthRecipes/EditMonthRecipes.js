@@ -5,15 +5,13 @@ import RecipesTable from './RecipesTable'
 import './EditMonthRecipes.css'
 import { updateMealPlan } from '../../Api'
 
-function editMonthrecipes ({ currentViewedRecipes, currentViewedMonth, setCurrentViewedRecipes, currentViewedPlan }) {
-  console.log(currentViewedPlan)
+function editMonthrecipes ({ currentViewedRecipes, currentViewedMonth, setCurrentViewedRecipes, currentViewedPlan, handleClose }) {
   const handleEditSubmission = () => {
-    console.log(currentViewedPlan)
-    console.log(currentViewedRecipes)
     currentViewedPlan.weekInfo = currentViewedRecipes
-    console.log(currentViewedPlan)
     updateMealPlan(currentViewedPlan)
+    handleClose(currentViewedPlan.month, currentViewedRecipes.length)
   }
+
   return (
         <Box className="container">
             <div className="flex-container">

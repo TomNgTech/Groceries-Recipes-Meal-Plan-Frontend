@@ -165,13 +165,16 @@ export async function getMealPlanByMonth (month) {
 }
 
 export async function updateMealPlan (mealplan) {
+  const weekInfoModification = {
+    weekInfo: mealplan.weekInfo
+  }
   try {
     const res = await fetch('http://52.37.204.183/mealPlans/' + mealplan.id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(mealplan)
+      body: JSON.stringify(weekInfoModification)
     })
     const data = await res.json()
     return data
