@@ -12,6 +12,8 @@ function editMonthrecipes ({ currentViewedRecipes, currentViewedMonth, setCurren
     handleClose(currentViewedPlan.month, currentViewedRecipes.length)
   }
 
+  const csvUrl = 'http://52.37.204.183/mealPlans/export/' + currentViewedPlan.month
+
   return (
         <Box className="container">
             <div className="flex-container">
@@ -40,6 +42,17 @@ function editMonthrecipes ({ currentViewedRecipes, currentViewedMonth, setCurren
                     Edit Month Plan
                 </Button>
                 <span className="new_ingredient_span"></span>
+                <span className="new_ingredient_span">
+                    <Button
+                        variant="contained"
+                        size="large"
+                        className="exportCSVButton"
+                        // onClick go to csvUrl
+                        onClick={e => window.open(csvUrl)}
+                    >
+                        Export to CSV
+                    </Button>
+                </span>
             </div>
         </Box>
   )
