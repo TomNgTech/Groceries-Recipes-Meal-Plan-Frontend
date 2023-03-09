@@ -17,6 +17,7 @@ import './Recipes.css'
 
 function Recipes () {
   const [recipes, setRecipes] = useState([])
+  const [selectedRecipe, setSelectedRecipe] = useState({})
 
   const [openModal, setOpenModal] = useState({
     openDetailModal: false,
@@ -68,8 +69,6 @@ function Recipes () {
       })
     }
   }
-
-  const [selectedRecipe, setSelectedRecipe] = useState({})
 
   const joinIngredients = (ingredients) => {
     const ingredientNames = []

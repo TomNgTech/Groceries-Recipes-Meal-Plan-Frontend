@@ -19,6 +19,6 @@
     justify-content: center;
 }
 
-.buttonBox{
-    width: auto;
+.edit_button_container {
+  width: auto;
 }

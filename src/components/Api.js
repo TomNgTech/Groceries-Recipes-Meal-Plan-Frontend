@@ -135,7 +135,7 @@ export async function getAllMealPlans () {
 
 export async function getMealPlanById (mealplanId) {
   try {
-    const res = await fetch('http://52.37.204.183/mealPlans' + mealplanId, {
+    const res = await fetch('http://52.37.204.183/mealPlans/' + mealplanId, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -161,5 +161,24 @@ export async function getMealPlanByMonth (month) {
   } catch (err) {
     console.log(err)
     return null
+  }
+}
+
+export async function updateMealPlan (mealplan) {
+  const weekInfoModification = {
+    weekInfo: mealplan.weekInfo
+  }
+  try {
+    const res = await fetch('http://52.37.204.183/mealPlans/' + mealplan.id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(weekInfoModification)
+    })
+    const data = await res.json()
+    return data
+  } catch (err) {
+    console.log(err)
   }
 }
