@@ -20,7 +20,7 @@ General info about the app
  
  On the mealplans page, there are cards for each month which indicate the number of recipes for a given month. Clicking on "View Month Plan" will pull up a modal which lists the recipes planned for a given month including serving size and week. The user can add a recipe to a given month by selecting its checkbox from the scrollview similar in nature to the ingredients scrollview. The user can remove a recipe from a month by unselecting the checkbox. 
 
- Recipes can adjust serving size and week. The user can save the mealplan by clicking on the "Edit Month Plan" button. It can be exported to CSV by clicking on "Export to CSV". The user can exit the form by clicking either button.
+ Recipes can adjust serving size and week. The user can save the mealplan by clicking on the "Edit Month Plan" button. It can be exported to CSV by clicking on "Export to CSV". The user can exit the form by clicking either button or clicking off-modal.
 
 
 ## Cloud Architecture
