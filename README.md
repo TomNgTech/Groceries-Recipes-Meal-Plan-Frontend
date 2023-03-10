@@ -3,7 +3,7 @@
 General info about the app
 
 ## Recipes
- Recipes are listed in the Recipes page. Each recipe has a title, a list of ingredients. The user can add a new recipe, edit an existing recipe, and delete a recipe. 
+ Recipes are listed in the Recipes page. Each recipe has a title and a list of ingredients. The user can add a new recipe, edit an existing recipe, and delete a recipe. 
 
  - Creating a new recipe: The user can add a new recipe by clicking on the "Add Recipe" button. The user can add a title by typing in the textbox. The user adds ingredients via selecting the checkbox in the list of ingredients on the right side and adjust quanity of ingredients in the list on the left. The user can also remove ingredients from recipe by unselecting the checkbox. The user can save the recipe by clicking on the "Submit" button. The user can exit the form by either clicking "Submit" or clicking off-modal. A recipe has to have a title and at least one ingredient.
 
@@ -12,8 +12,8 @@ General info about the app
  - Deleting an existing recipe: The user can delete an existing recipe by clicking on the trash can icon. Deleted recipes cannot be recovered. Deleted recipes should be removed from respective mealplans
 
 ## Ingredients
- Ingredients are listed in a scrollview in the recipe creation/edit screens. Each ingredient has a name, a unit, and a quantity. 
- The user can add a new ingredient, edit an existing ingredient, and delete an ingredient. An ingredient must have a name and a unit from predefined list of units. After selecting add to options, the ingredient appears in list of available ingredients.
+ Ingredients are listed in a scrollview in the recipe creation/edit screens. Each ingredient has a name, a unit, and a quantity.
+ The user can add a new ingredient below the scrollview. An ingredient must have a name and a unit from predefined list of units. After selecting "Add To Options", the ingredient appears in list of available ingredients. To delete an ingredient, click the trash can icon and it's removed from list.
 
 ## Mealplans
  Mealplans are listed in the Mealplans page. Each mealplan consists of list of recipes for an associated month. The user can add recipes to a mealplan for a given month and remove recipes from a mealplan for a given month. Each month's mealplan can be converted to CSV format and downloaded.
