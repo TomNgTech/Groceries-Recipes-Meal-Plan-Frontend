@@ -22,6 +22,15 @@ General info about the app
 
  Recipes can adjust serving size and week. The user can save the mealplan by clicking on the "Edit Month Plan" button. It can be exported to CSV by clicking on "Export to CSV". The user can exit the form by clicking either button or clicking off-modal.
 
+## State Management
+The app uses useState hooks for state management and does not use external packages such as Redux. 
+
+- Recipes: The state for recipes is managed in the Recipes component. The Recipes component passes down the recipes state and setRecipes hook to Add Recipe component and selectedRecipe state as well as setSelectedRecipe hook to RecipeDetails to allow modifications. In RecipeDetails, the selected recipe's ingredient list is passed down to DisplayRecipeIngredients component. Modification made via edit recipe are set via setSelectedRecipe hook.
+
+- Ingredients: The state for ingredients is managed in the IngredientOptions component. As it has no children, it does not need to pass down its state. When a new ingredient is added, the ingredient is added to the ingredients state via setNewIngredientData hook and addNewIngredientOption function.
+
+- Mealplans: The state for mealplans is managed in the Mealplans component. The Mealplans component passes down the month, mealplan and number of recipes to the MealPlanCard component as well as a callback function to open a modal for editing said mealplan. In the editing modal, EditMonthRecipes, the selected month's mealplan is modified via setCurrentViewedRecipes hook which modifies the recipes currently associated with the month and "handleEditSubmission" function which updates the month's mealplan on the backend. This modification will trigger a re-render of the Mealplans component which will fetch the mealplans from server and update number of recipes for each month.
+
 
 ## Cloud Architecture
 
