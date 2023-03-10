@@ -39,16 +39,6 @@ const HomeCarousel = () => {
       ]
     },
     {
-      name: 'FRIED RICE',
-      image: lamb,
-      description: 'Fried bacon, onions, garlic, rice, with eggs',
-      ingredients: [
-        { name: 'chicken tighs', quantity: '4', measurementType: 'unit' },
-        { name: 'potatoes', quantity: '5', measurementType: 'unit' },
-        { name: 'butter', quantity: '70', measurementType: 'gram' }
-      ]
-    },
-    {
       name: 'BROWNIES',
       image: brownies,
       description:
@@ -87,8 +77,8 @@ const HomeCarousel = () => {
       <Carousel value={value} onChange={onChange} arrows infinite slidesPerPage={4}>
         <MediaCard props={recipeObject[0]} />
         <MediaCard props={recipeObject[1]} />
+        <MediaCard props={recipeObject[2]} />
         <MediaCard props={recipeObject[3]} />
-        <MediaCard props={recipeObject[4]} />
       </Carousel>
     </div>
   )

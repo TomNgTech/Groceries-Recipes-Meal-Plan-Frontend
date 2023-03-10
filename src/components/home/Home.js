@@ -2,8 +2,6 @@ import { Typography } from '@mui/material'
 import { React } from 'react'
 import HomeCarousel from './HomeCarousel'
 import './home.css'
-import './homeImages/HealtyFoodsImg.JPG'
-
 function HomePage () {
   return (
     <>
