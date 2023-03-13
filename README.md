@@ -94,25 +94,27 @@ Jest offers a zero config, working out of the box on most projects. It allows fo
 Jest was chosen because it works right out of the box with little to no configuration. Jest ensures that different tests don't influence each other's results by executing parallel tests and acting as an orchestrator to collect the results from all processes.   
 
 # What was tested: 
--Home Component
+- Home Component
         -Tests that home component is rendered
         -Tests that P tag intro is rendered
--Navbar Component
+- Navbar Component
         -Tests that navigation bar is rendered
         -Tests that navbar contains correct links
         -Tests that navigation links work correctly
--Recipes Component
+- Recipes Component
         -Tests that Recipes component renders 
         -Tests Table component renders correct data from db
 
 # What was not tested: 
--Mealplan Component
--Mealplan Cards
+- Mealplan Component
+- Mealplan Cards
 
 # Installation: 
-`npm install --save-dev jest` : installs jest
+Run the following code to install jests framework: `npm install --save-dev jest`
+ 
+- Configuration file is how jest chooses where to store cache data. This is how we configured out jest tests. 
 
--Configuration File: `jest.config.js` 
+- Configuration File: `jest.config.js` 
 ```
 module.exports = {
   moduleNameMapper: {
@@ -122,8 +124,6 @@ module.exports = {
   }
 }
 ```
-
-
 
 ## Continuous Integration / Continuous Delivery (CI/CD)
 
