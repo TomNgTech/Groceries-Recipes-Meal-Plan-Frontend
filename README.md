@@ -83,6 +83,48 @@ server {
 
 Visit [AWS Official Document](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) for how to create an Elastic IP Address and attach it to your EC2 instance
 
+
+### Testing with Jest
+
+# What is jest
+Jest is a javascript testing framework focused on simplicity. It ensures that each test has a unique global state allowing for them to run parallel. Jest uses custom resolver for imports into tests, making it simple to mock any object outside of the test's scope. 
+Jest offers a zero config, working out of the box on most projects. It allows for snapshots that keep track of large objects. Tests are isolated running parallel with their own processes to maximize performance. 
+
+# Why it was chosen
+Jest was chosen because it works right out of the box with little to no configuration. Jest ensures that different tests don't influence each other's results by executing parallel tests and acting as an orchestrator to collect the results from all processes.   
+
+# What was tested: 
+-Home Component
+        -Tests that home component is rendered
+        -Tests that P tag intro is rendered
+-Navbar Component
+        -Tests that navigation bar is rendered
+        -Tests that navbar contains correct links
+        -Tests that navigation links work correctly
+-Recipes Component
+        -Tests that Recipes component renders 
+        -Tests Table component renders correct data from db
+
+# What was not tested: 
+-Mealplan Component
+-Mealplan Cards
+
+# Installation: 
+`npm install --save-dev jest` : installs jest
+
+-Configuration File: `jest.config.js` 
+```
+module.exports = {
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__mocks__/fileMock.js',
+    '\\.(css|less)$': 'identity-obj-proxy'
+  }
+}
+```
+
+
+
 ## Continuous Integration / Continuous Delivery (CI/CD)
 
 The React front-end Groceries - Recipes - Meal Plans app uses [GitHub Actions](https://github.com/features/actions) for both CI & CD pipelines. Continuous Integration (CI) pipeline will run checks for new PR requesting to be merged into `main`. Continuous Delivery (CD) pipeline will deploy code changes to production server once the PR has been merged.
