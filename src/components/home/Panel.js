@@ -19,12 +19,12 @@ export default function MediaCard (recipeObject) {
         <Typography gutterBottom variant='h5' component='div'>
           {recipeObject.props.name}
         </Typography>
-        <Typography variant='body2' color='text.secondary'>
+        <Typography variant='body2' color='text.secondary' style={{ fontSize: 12 }}>
          {recipeObject.props.description}
         </Typography>
       </CardContent>
       <CardActions >
-        <Button size='small'>Add to Recipes</Button>
+        <Button size='small' style={{ bottom: 0, position: 'absolute' }}>Add to Recipes</Button>
       </CardActions>
     </Card>
   )
