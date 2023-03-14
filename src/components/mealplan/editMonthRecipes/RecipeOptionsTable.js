@@ -21,7 +21,8 @@ function RecipeOptionsTable ({ currentViewedRecipes, setCurrentViewedRecipes }) 
       const newRecipe = {
         weekNum: '1',
         dishName: recipe.dishName,
-        dishId: recipe.id
+        dishId: recipe.id,
+        servings: 1
       }
       setCurrentViewedRecipes(() => [
         ...currentViewedRecipes,
