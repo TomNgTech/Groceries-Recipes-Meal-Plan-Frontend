@@ -1,0 +1,49 @@
+/* Home css */
+.carousel_text {
+    position: relative; 
+    border: none;
+    text-align: center;
+    font-family: Chilanka;
+    font-size: 40px
+}
+.openningStatement{
+    margin-top: 30px;
+    position: relaitve;
+    width: 66%;
+    padding: 10px;
+    margin: auto;
+    text-align: left;
+    border: 1px solid black;
+    font-size: 20px;
+  }
+  
+  .home_carousel {
+    background: white;
+    position: relative;
+    font-family: sans-serif;
+    text-align: center;
+    width: 60%;
+    margin: 20px auto;
+    border: solid 1px black;
+    border-radius: 20px;
+  }
+  
+ .css-t1nuxs {
+  font: size 1rem;
+ }
+
+  .BrainhubCarouselItem{
+    margin-bottom: 20px;
+  }
+
+
+  button.BrainhubCarousel__arrows {
+    background-color: initial;
+  }
+  
+  button.BrainhubCarousel__arrows {
+    background-color: initial;
+  }
+  button.BrainhubCarousel__arrows span {
+    border-color: #17a2b8;
+  }

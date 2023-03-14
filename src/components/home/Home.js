@@ -1,7 +1,8 @@
+import '../../home.css'
 import { Typography } from '@mui/material'
 import { React } from 'react'
 import HomeCarousel from './HomeCarousel'
-import './home.css'
+
 function HomePage () {
   return (
     <>
