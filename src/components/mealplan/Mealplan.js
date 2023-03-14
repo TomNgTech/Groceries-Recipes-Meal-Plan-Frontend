@@ -26,7 +26,6 @@ function MealPlan () {
       setAllplans(plans)
       setRecipeNum(recipes)
     })
-    console.log(recipeNum)
   }, [])
 
   const createGridItems = () => {

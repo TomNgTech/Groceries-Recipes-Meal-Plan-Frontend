@@ -24,7 +24,7 @@ export default function MediaCard (recipeObject) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>Add to Reccipes</Button>
+        <Button size='small'>Add to Recipes</Button>
       </CardActions>
     </Card>
   )

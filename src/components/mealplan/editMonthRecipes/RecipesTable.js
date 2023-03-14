@@ -10,8 +10,8 @@ function RecipesTable (props) {
 
   const handleServingsChange = (event, recipe) => {
     const newArray = props.currentViewedRecipes.map(newRecipe => {
-      if (newRecipe.id === recipe.id) {
-        // newRecipe.servings = event.target.value
+      if (newRecipe.dishId === recipe.dishId) {
+        newRecipe.servings = parseInt(event.target.value)
       }
       return newRecipe
     })
@@ -20,7 +20,7 @@ function RecipesTable (props) {
 
   const handleWeekChange = (event, recipe) => {
     const newArray = props.currentViewedRecipes.map(newRecipe => {
-      if (newRecipe.id === recipe.id) {
+      if (newRecipe.dishId === recipe.dishId) {
         newRecipe.weekNum = event.target.value
       }
       return newRecipe
@@ -67,7 +67,7 @@ function RecipesTable (props) {
                                         <TextField
                                             hiddenLabel
                                             id="filled-hidden-label-small"
-                                            defaultValue={0}
+                                            defaultValue={recipe.servings}
                                             variant="standard"
                                             size="small"
                                             onChange={(e) => handleServingsChange(e, recipe)}
