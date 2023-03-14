@@ -18,7 +18,6 @@
   }
   
  
-  
   @-webkit-keyframes Background {
     0% {
       background-position: 0% 50%
@@ -83,16 +82,22 @@
     position: relative;
     font-family: sans-serif;
     text-align: center;
-    padding: 20px;
     width: 60%;
     margin: 20px auto;
     border: solid 1px black;
     border-radius: 20px;
   }
   
+  .BrainhubCarouselItem{
+    margin-bottom: 20px;
+  }
+
+  .css-1t6e9jv-MuiCardActions-root{
+    bottom:0; 
+    position: absolute;
+  }
   button.BrainhubCarousel__arrows {
     background-color: initial;
-    
   }
   
   button.BrainhubCarousel__arrows {

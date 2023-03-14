@@ -8,9 +8,9 @@ import Typography from '@mui/material/Typography'
 
 export default function MediaCard (recipeObject) {
   return (
-    <Card sx={{ maxWidth: 345, height: 425 }}>
+    <Card sx={{ maxWidth: 345, height: 430 }}>
       <CardMedia
-        sx={{ height: 140, alignContent: 'center' }}
+        sx={{ height: 150, alignContent: 'center' }}
         component='img'
         src={recipeObject.props.image}
         title='green iguana'
@@ -23,7 +23,7 @@ export default function MediaCard (recipeObject) {
          {recipeObject.props.description}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions >
         <Button size='small'>Add to Recipes</Button>
       </CardActions>
     </Card>
