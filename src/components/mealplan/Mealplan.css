@@ -1,17 +1,79 @@
-.grid{
+.grid {
     padding-left: 5rem;
     padding-right: 5rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    float: left;
+    width: 25%;
 }
-.Title{
+
+.Title {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.recipeBox{
+
+.recipeBox {
     border: 2px solid lightseagreen;
     border-radius: 8px;
     padding: 10px;
     height: 125px;
+}
+
+
+@media screen and (max-width: 910px) {
+
+    .MuiContainer-root.MuiContainer-maxWidthLg.recipeBox.css-1oqqzyl-MuiContainer-root {
+        width: 150px;
+    }
+
+    .MuiTypography-root.MuiTypography-h6.css-2ulfj5-MuiTypography-root {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .MuiContainer-root.MuiContainer-maxWidthLg.recipeBox.css-1oqqzyl-MuiContainer-root {
+        width: 150px;
+    }
+
+    .MuiTypography-root.MuiTypography-h6.css-2ulfj5-MuiTypography-root {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+}
+
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-3.css-1equabv-MuiGrid-root {
+    content: normal;
+    display: table;
+    clear: both;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 580px) {
+
+    .MuiContainer-root.MuiContainer-maxWidthLg.recipeBox.css-1oqqzyl-MuiContainer-root {
+        width: 150px;
+    }
+
+    .MuiTypography-root.MuiTypography-h6.css-2ulfj5-MuiTypography-root {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .MuiTypography-root.MuiTypography-h1.css-o2w69a-MuiTypography-root {
+        font-size: 5rem;
+    }
+}
+
+.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-3.css-1equabv-MuiGrid-root {
+    content: normal;
+    display: table;
+    clear: both;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
