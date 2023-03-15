@@ -12,7 +12,7 @@ function editMonthrecipes ({ currentViewedRecipes, currentViewedMonth, setCurren
     handleClose(currentViewedPlan.month, currentViewedRecipes.length)
   }
 
-  const csvUrl = 'http://52.37.204.183/mealPlans/export/' + currentViewedPlan.month
+  const csvUrl = 'http://52.37.204.183/ingredients/export/' + currentViewedPlan.month
 
   return (
         <Box className="container">
