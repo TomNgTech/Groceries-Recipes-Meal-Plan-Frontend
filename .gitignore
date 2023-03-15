@@ -21,6 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.vs/slnx.sqlite
-.vs/VSWorkspaceState.json
-.vs/Groceries-Recipes-Meal-Plan-Frontend/v17/.suo
