@@ -6,6 +6,13 @@ General info about the app
 - Here is a logical view of our project. As seen in the following diagram, users are able to visit the home screen where they can navigate to the Recipes screen and the Mealplan Screen. On the Recipes screen users are able to add new recipes or edit current recipes with their associated ingredients and quantities. A Put or Post call is made to our data manager adding or updating the associated recipe within our db. Users are also able to view the current recipes they have stored and updated via a Get call to our data manager which searches our db for all the available recipes. On our Mealplan page users are able to add recipes to a selected month via get calls and can update the recipes for that month via put calls. The recipes are listed by week within the month and are shown via a modal.
 <img src='/src/Assets/Logical_View.JPG' alt="Alt text" title="Optional title">
 
+## Scenario View
+- This is the Scenario view of our project. This view shows the user flow of our application. There are two primary routes users follow when using our application. The first route is the Recipes route. This route allows users to add new recipes, edit existing recipes, and view existing recipes. The second route is the Mealplan route. This route allows users to add recipes to a given month, remove recipes from a given month, view the recipes for a given month, and export the recipes and ingredients for a given month to a CSV file.
+<img src='/src/Assets/Scenario_View.JPG' alt="Scenario View" title="Scenario View">
+
+## Process View
+- This is the Process view of our project. This view shows the process flow of our application. Essentially, it is a more detailed expansion of the scenario view which includes the server side fetches and responses as well as the functions. We can see in detail how the user flow is implemented in our application.
+<img src='/src/Assets/Process_View.JPG' alt="Process View" title="Process View">
 
 ## Recipes
  Recipes are listed in the Recipes page. Each recipe has a title and a list of ingredients. The user can add a new recipe, edit an existing recipe, and delete a recipe. 
