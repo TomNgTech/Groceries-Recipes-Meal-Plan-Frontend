@@ -6,6 +6,12 @@ General info about the app
 - Here is a logical view of our project. As seen in the following diagram, users are able to visit the home screen where they can navigate to the Recipes screen and the Mealplan Screen. On the Recipes screen users are able to add new recipes or edit current recipes with their associated ingredients and quantities. A Put or Post call is made to our data manager adding or updating the associated recipe within our db. Users are also able to view the current recipes they have stored and updated via a Get call to our data manager which searches our db for all the available recipes. On our Mealplan page users are able to add recipes to a selected month via get calls and can update the recipes for that month via put calls. The recipes are listed by week within the month and are shown via a modal.
 <img src='/src/Assets/Logical_View.JPG' alt="Alt text" title="Optional title">
 
+## Scenario Diagram
+This diagram depicts the two main routs of the project. From the home page the user has two routes to choose from:
+- Route 1 Recipe: Upon clicking the Recipes link the user is brought to the Recipe screen that displays all their recipes that have been saved. From here they could add more recipes and ingredients.
+- Route 2 Meal Plan: Upon clicking on the Meal Plans link the user is brought to the Meal Plan screen that displays a calendar and how many plans have been saved for each month. From here they can add Meal plans to a specific month.
+<img src='src/Assets/Scenario Diagram.jpeg' alt="Alt text" title="Optional title">
+
 
 ## Recipes
  Recipes are listed in the Recipes page. Each recipe has a title and a list of ingredients. The user can add a new recipe, edit an existing recipe, and delete a recipe. 
