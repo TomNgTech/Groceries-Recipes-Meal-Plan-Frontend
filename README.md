@@ -12,6 +12,9 @@ This diagram depicts the two main routs of the project. From the home page the u
 - Route 2 Meal Plan: Upon clicking on the Meal Plans link the user is brought to the Meal Plan screen that displays a calendar and how many plans have been saved for each month. From here they can add Meal plans to a specific month.
 <img src='src/Assets/Scenario Diagram.jpeg' alt="Alt text" title="Optional title">
 
+## Process View
+- This is the Process view of our project. This view shows the process flow of our application. Essentially, it is a more detailed expansion of the scenario view which includes the server side fetches and responses as well as the functions. We can see in detail how the user flow is implemented in our application.
+<img src='/src/Assets/Process_View.png' alt="Process View" title="Process View">
 
 ## Recipes
  Recipes are listed in the Recipes page. Each recipe has a title and a list of ingredients. The user can add a new recipe, edit an existing recipe, and delete a recipe. 
