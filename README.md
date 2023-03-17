@@ -1,6 +1,8 @@
 # Groceries - Recipes - Meal Plans React App
 
-General info about the app
+Groceries - Recipes - Meal Plans React App serves as a frontend client for the users to interact and have a way to manage their groceries lists/mealplans.
+
+Live Endpoint: http://44.226.181.17/
 
 ## Logical view
 - Here is a logical view of our project. As seen in the following diagram, users are able to visit the home screen where they can navigate to the Recipes screen and the Mealplan Screen. On the Recipes screen users are able to add new recipes or edit current recipes with their associated ingredients and quantities. A Put or Post call is made to our data manager adding or updating the associated recipe within our db. Users are also able to view the current recipes they have stored and updated via a Get call to our data manager which searches our db for all the available recipes. On our Mealplan page users are able to add recipes to a selected month via get calls and can update the recipes for that month via put calls. The recipes are listed by week within the month and are shown via a modal.
